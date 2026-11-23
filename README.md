@@ -22,14 +22,16 @@ Freelance-Otomasi-Web/
     └── templates/             # Template proposal, pesan klien, checklist umum
 ```
 
-### Job 2 — `job2-web-landing-maintenance/resources/`
+## Resource GitHub yang sudah di-clone
+
+### Job 1 — `job1-otomasi-ai-workflow/resources/`
 | Repo | Sumber | Kegunaan |
 |---|---|---|
-| `tailwind-landing-page-template/` | https://github.com/cruip/tailwind-landing-page-template | Template landing page (React/Next.js + Tailwind). |
-| `Next-JS-Landing-Page-Starter-Template/` | https://github.com/ixartz/Next-JS-Landing-Page-Starter-Template | Starter Next.js + TypeScript + Tailwind siap pakai. |
-| `shadcn-landing-page/` | https://github.com/nobruf/shadcn-landing-page | Landing page Next.js + shadcn/ui + Tailwind. |
-| `astro-cloudflare-landing-starter/` | https://github.com/adcuelloa/astro-cloudflare-landing-starter | Starter Astro untuk Cloudflare Pages (SEO, i18n, content collections). |
-| `astro-stefan-starter/` | https://github.com/stefanbobrowski/astro-stefan-starter | Starter Astro + TypeScript dengan fokus komponen & SEO. |
+| `awesome-n8n-templates/` | https://github.com/enescingoz/awesome-n8n-templates | Kumpulan template workflow n8n (otomasi, AI agent, RAG, integrasi layanan). |
+| `n8n-ai-automations/` | https://github.com/lucaswalter/n8n-ai-automations | Contoh workflow & automasi AI berbasis n8n. |
+| `Hexabot/` | https://github.com/hexabot-ai/Hexabot | Platform/workflow automation & conversational/agent runtime sebagai referensi arsitektur. |
+| `awesome-ai-agent-platforms/` | https://github.com/Agenta-AI/awesome-ai-agent-platforms | Kurasi platform/framework agent & workflow automation open-source. |
+| `patchwork/` | https://github.com/patched-codes/patchwork | Referensi framework agentic workflow automation. |
 
 ## Demo portofolio Job 2
 
