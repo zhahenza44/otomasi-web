@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 280" role="img" aria-label="Ilustrasi mobil SUV bronze">
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a9793f"/>
+      <stop offset="1" stop-color="#4a2f14"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e9f3f8"/>
+      <stop offset="1" stop-color="#95b5c4"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="320" cy="248" rx="254" ry="15" fill="#0b1c24" opacity=".15"/>
+  <path d="M58 194c-6-24 10-42 36-48l108-24 40-58c10-12 27-18 45-18h141c21 0 38 7 50 21l36 49 42 14c26 8 39 27 32 51l-4 13H60z" fill="url(#body)"/>
+  <path d="M252 118l38-58h146l42 58z" fill="url(#glass)"/>
+  <path d="M330 60v58M404 60v58" stroke="#4a2f14" stroke-width="5" opacity=".5"/>
+  <path d="M270 40h170" stroke="#0f1f27" stroke-width="7" stroke-linecap="round"/>
+  <path d="M300 44v14M410 44v14" stroke="#0f1f27" stroke-width="5" stroke-linecap="round"/>
+  <path d="M64 194h520v12c0 7-5 12-12 12H78c-8 0-14-5-14-12z" fill="#122530"/>
+  <path d="M112 172h430" stroke="#ffffff" stroke-opacity=".18" stroke-width="3"/>
+  <rect x="64" y="178" width="50" height="13" rx="6" fill="#f5b942"/>
+  <rect x="576" y="178" width="44" height="13" rx="6" fill="#ff6b5e"/>
+  <circle cx="170" cy="208" r="47" fill="#0c1519"/>
+  <circle cx="170" cy="208" r="27" fill="#cfdbd6"/>
+  <circle cx="170" cy="208" r="11" fill="#7d8f88"/>
+  <circle cx="476" cy="208" r="47" fill="#0c1519"/>
+  <circle cx="476" cy="208" r="27" fill="#cfdbd6"/>
+  <circle cx="476" cy="208" r="11" fill="#7d8f88"/>
+</svg>

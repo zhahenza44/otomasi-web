@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 280" role="img" aria-label="Ilustrasi mobil hatchback">
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d98a4f"/>
+      <stop offset="1" stop-color="#7a3c1c"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fdf0e4"/>
+      <stop offset="1" stop-color="#e0b28e"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="320" cy="238" rx="238" ry="15" fill="#2a1608" opacity=".13"/>
+  <path d="M92 198c-6-22 8-38 30-43l66-15 48-52c11-12 27-18 43-18h98c18 0 35 6 48 18l42 48 58 14c24 6 36 22 31 43l-3 14H92z" fill="url(#body)"/>
+  <path d="M238 132l38-44c7-8 17-12 28-12h96c12 0 24 4 32 12l32 44z" fill="url(#glass)"/>
+  <path d="M318 76v56M400 76v56" stroke="#7a3c1c" stroke-width="4" opacity=".5"/>
+  <path d="M118 176h414" stroke="#ffffff" stroke-opacity=".18" stroke-width="3"/>
+  <rect x="96" y="190" width="56" height="12" rx="6" fill="#f5b942"/>
+  <rect x="498" y="190" width="50" height="12" rx="6" fill="#ff6b5e"/>
+  <circle cx="184" cy="208" r="40" fill="#1b0f06"/>
+  <circle cx="184" cy="208" r="22" fill="#c9d6d1"/>
+  <circle cx="184" cy="208" r="10" fill="#7d8f88"/>
+  <circle cx="466" cy="208" r="40" fill="#1b0f06"/>
+  <circle cx="466" cy="208" r="22" fill="#c9d6d1"/>
+  <circle cx="466" cy="208" r="10" fill="#7d8f88"/>
+</svg>

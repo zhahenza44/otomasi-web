@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 280" role="img" aria-label="Ilustrasi mobil sedan merah">
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b5495b"/>
+      <stop offset="1" stop-color="#4d1a24"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#efeafd"/>
+      <stop offset="1" stop-color="#b9addd"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="320" cy="238" rx="248" ry="16" fill="#171227" opacity=".14"/>
+  <path d="M82 198c-6-22 8-38 30-43l68-15 58-48c12-10 27-16 43-16h84c18 0 35 6 48 18l44 40 66 17c24 6 36 22 31 43l-3 14H82z" fill="url(#body)"/>
+  <path d="M246 134l44-38c8-7 18-10 29-10h68c12 0 23 4 32 12l38 36z" fill="url(#glass)"/>
+  <path d="M330 86v48" stroke="#4d1a24" stroke-width="4" opacity=".55"/>
+  <path d="M112 176h420" stroke="#ffffff" stroke-opacity=".18" stroke-width="3"/>
+  <rect x="90" y="190" width="58" height="12" rx="6" fill="#f5b942"/>
+  <rect x="500" y="190" width="52" height="12" rx="6" fill="#ff6b5e"/>
+  <circle cx="178" cy="208" r="40" fill="#120f1d"/>
+  <circle cx="178" cy="208" r="22" fill="#c9d6d1"/>
+  <circle cx="178" cy="208" r="10" fill="#7d8f88"/>
+  <circle cx="468" cy="208" r="40" fill="#120f1d"/>
+  <circle cx="468" cy="208" r="22" fill="#c9d6d1"/>
+  <circle cx="468" cy="208" r="10" fill="#7d8f88"/>
+</svg>

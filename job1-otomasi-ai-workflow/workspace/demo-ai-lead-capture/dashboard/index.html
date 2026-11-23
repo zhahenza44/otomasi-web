@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LeadPulse — Dashboard Lead & AI Follow-up</title>
+  <meta name="description" content="Dashboard demo untuk memantau lead, hasil klasifikasi AI, dan follow-up otomatis.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
+    <symbol id="icon-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.4"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0"/><path d="M16 5.2a3.4 3.4 0 0 1 0 6.6"/><path d="M17.5 14.5a5.5 5.5 0 0 1 3 5"/></symbol>
+    <symbol id="icon-workflow" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8.5 6h7M7.2 8.4l3.6 7.2M16.8 8.4l-3.6 7.2"/></symbol>
+    <symbol id="icon-plug" viewBox="0 0 24 24"><path d="M9 3v5M15 3v5"/><path d="M6 8h12v2a6 6 0 0 1-12 0z"/><path d="M12 16v5"/></symbol>
+    <symbol id="icon-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1.1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="icon-bolt" viewBox="0 0 24 24"><path d="M13 2L4.5 13.5H11l-1 8.5 8.5-11.5H12z"/></symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6 8.5-6"/></symbol>
+    <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-8 8H7l-4 3V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/><path d="M8.5 11.5h7M8.5 15h4"/></symbol>
+    <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="icon-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.5 21a2 2 0 0 1-3 0"/></symbol>
+    <symbol id="icon-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></symbol>
+    <symbol id="icon-camera" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="3"/><circle cx="12" cy="13" r="3.4"/><path d="M8.5 6l1.2-2h4.6l1.2 2"/></symbol>
+    <symbol id="icon-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="icon-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="icon-trend" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></symbol>
+    <symbol id="icon-sparkles" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></symbol>
+    <symbol id="icon-chevron" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+    <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="icon-phone" viewBox="0 0 24 24"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5L16 12l4 1.5v3A2.5 2.5 0 0 1 17.5 19 14.5 14.5 0 0 1 5 6.5 2.5 2.5 0 0 1 6.5 3z"/></symbol>
+    <symbol id="icon-doc" viewBox="0 0 24 24"><path d="M6 3h8l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v6h6M8.5 13h7M8.5 17h5"/></symbol>
+    <symbol id="icon-inbox" viewBox="0 0 24 24"><path d="M4 13l2-7h12l2 7v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M4 13h5l1 2h4l1-2h5"/></symbol>
+  </svg>
+
+  <div class="app">
+    <aside class="sidebar" id="sidebar" aria-label="Navigasi dashboard">
+      <div class="sidebar-brand">
+        <span class="brand-logo"><svg><use href="#icon-bolt"/></svg></span>
+        <span class="brand-text">Lead<span>Pulse</span></span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <p class="nav-label">Workspace</p>
+        <button class="nav-item is-active" type="button" data-nav="dashboard">
+          <svg><use href="#icon-grid"/></svg>
+          <span>Dashboard</span>
+        </button>
+        <button class="nav-item" type="button" data-nav="leads">
+          <svg><use href="#icon-users"/></svg>
+          <span>Lead</span>
+          <span class="nav-badge" id="nav-lead-count">12</span>
+        </button>
+        <button class="nav-item" type="button" data-nav="workflow">
+          <svg><use href="#icon-workflow"/></svg>
+          <span>Workflow</span>
+        </button>
+        <button class="nav-item" type="button" data-nav="integrations">
+          <svg><use href="#icon-plug"/></svg>
+          <span>Integrasi</span>
+        </button>
+
+        <p class="nav-label nav-label-spaced">Akun</p>
+        <button class="nav-item" type="button" data-nav="settings">
+          <svg><use href="#icon-settings"/></svg>
+          <span>Pengaturan</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-foot">
+        <div class="automation-card">
+          <div class="automation-head">
+            <span class="pulse-dot"></span>
+            <span>Workflow aktif</span>
+          </div>
+          <p>Lead capture &amp; AI follow-up</p>
+          <div class="automation-stat"><strong>99,2%</strong><span>sukses 7 hari</span></div>
+        </div>
+        <div class="sidebar-user">
+          <span class="avatar avatar-user">ZH</span>
+          <div><strong>Zhahenza</strong><span>Admin</span></div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="sidebar-scrim" id="sidebar-scrim" hidden></div>
+
+    <div class="main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-label="Buka menu" aria-controls="sidebar" aria-expanded="false">
+            <svg><use href="#icon-menu"/></svg>
+          </button>
+          <label class="global-search">
+            <svg><use href="#icon-search"/></svg>
+            <span class="sr-only">Cari lead</span>
+            <input type="search" id="lead-search" placeholder="Cari lead atau perusahaan…" autocomplete="off">
+          </label>
+        </div>
+        <div class="topbar-right">
+          <span class="live-pill"><span class="pulse-dot"></span> Live demo</span>
+          <button class="btn btn-primary" type="button" id="simulate-btn">
+            <svg><use href="#icon-plus"/></svg>
+            <span>Simulasi lead</span>
+          </button>
+          <span class="avatar avatar-user topbar-avatar" aria-hidden="true">ZH</span>
+        </div>
+      </header>
+
+      <main class="content" id="dashboard">
+        <section class="page-head">
+          <div>
+            <p class="eyebrow">Dashboard</p>
+            <h1>Lead overview</h1>
+            <p class="page-sub">Pantau lead masuk, hasil klasifikasi AI, dan follow-up otomatis dalam satu tempat.</p>
+          </div>
+          <span class="range-pill">
+            <svg><use href="#icon-clock"/></svg>
+            7 hari terakhir
+          </span>
+        </section>
+
+        <section class="workflow-strip" aria-label="Status workflow">
+          <div class="workflow-main">
+            <span class="workflow-icon"><svg><use href="#icon-workflow"/></svg></span>
+            <div>
+              <strong>Workflow Lead Capture aktif</strong>
+              <p>Terakhir berjalan 2 menit lalu · <span id="workflow-lead-count">12</span> lead diproses minggu ini</p>
+            </div>
+          </div>
+          <button class="btn btn-soft btn-sm" type="button" data-toast="Detail workflow tersedia di file workflow/lead-capture-ai-followup.json.">Lihat workflow</button>
+        </section>
+
+        <section class="kpi-grid" aria-label="Ringkasan metrik">
+          <article class="kpi">
+            <div class="kpi-top">
+              <span class="kpi-icon tint-indigo"><svg><use href="#icon-inbox"/></svg></span>
+              <span class="kpi-trend is-up"><svg><use href="#icon-trend"/></svg> 18%</span>
+            </div>
+            <p class="kpi-label">Total lead</p>
+            <p class="kpi-value" id="kpi-total">12</p>
+            <p class="kpi-note">7 hari terakhir</p>
+          </article>
+          <article class="kpi">
+            <div class="kpi-top">
+              <span class="kpi-icon tint-rose"><svg><use href="#icon-bolt"/></svg></span>
+              <span class="kpi-trend is-up"><svg><use href="#icon-trend"/></svg> 9%</span>
+            </div>
+            <p class="kpi-label">Lead prioritas tinggi</p>
+            <p class="kpi-value" id="kpi-high">5</p>
+            <p class="kpi-note" id="kpi-high-note">42% dari total lead</p>
+          </article>
+          <article class="kpi">
+            <div class="kpi-top">
+              <span class="kpi-icon tint-emerald"><svg><use href="#icon-clock"/></svg></span>
+              <span class="kpi-trend is-down"><svg><use href="#icon-trend"/></svg> 63%</span>
+            </div>
+            <p class="kpi-label">Rata-rata respons</p>
+            <p class="kpi-value" id="kpi-response">6 mnt</p>
+            <p class="kpi-note">Sebelumnya 16 menit</p>
+          </article>
+          <article class="kpi">
+            <div class="kpi-top">
+              <span class="kpi-icon tint-amber"><svg><use href="#icon-mail"/></svg></span>
+              <span class="kpi-trend is-up"><svg><use href="#icon-trend"/></svg> 12%</span>
+            </div>
+            <p class="kpi-label">Follow-up terkirim</p>
+            <p class="kpi-value" id="kpi-followup">27</p>
+            <p class="kpi-note">Email &amp; WhatsApp</p>
+          </article>
+        </section>
+
+        <section class="chart-grid">
+          <article class="card chart-card">
+            <div class="card-head">
+              <div>
+                <h2>Lead masuk</h2>
+                <p>7 hari terakhir, semua channel</p>
+              </div>
+              <div class="chart-total"><strong id="chart-total">12</strong><span>lead</span></div>
+            </div>
+            <div class="bar-chart" id="daily-chart" role="img" aria-label="Grafik lead masuk tujuh hari terakhir"></div>
+          </article>
+
+          <article class="card source-card">
+            <div class="card-head">
+              <div>
+                <h2>Sumber lead</h2>
+                <p>Distribusi 7 hari terakhir</p>
+              </div>
+            </div>
+            <ul class="source-list" id="source-list"></ul>
+          </article>
+        </section>
+
+        <section class="card table-card" id="leads">
+          <div class="card-head table-head">
+            <div>
+              <h2>Lead terbaru</h2>
+              <p id="lead-count-label">Menampilkan 12 lead</p>
+            </div>
+            <div class="table-filters">
+              <select class="select" id="status-select" aria-label="Filter status">
+                <option value="all">Semua status</option>
+                <option value="new">Baru</option>
+                <option value="contacted">Dihubungi</option>
+                <option value="followup">Follow-up</option>
+                <option value="won">Closing</option>
+              </select>
+              <button class="icon-btn" type="button" id="export-btn" aria-label="Export data (demo)" data-toast="Export CSV tersedia di versi lengkap. Demo ini menampilkan data contoh.">
+                <svg><use href="#icon-doc"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="priority-chips" id="priority-chips" role="group" aria-label="Filter prioritas">
+            <button class="chip is-active" type="button" data-priority="all">Semua <span>12</span></button>
+            <button class="chip" type="button" data-priority="high">Tinggi <span>5</span></button>
+            <button class="chip" type="button" data-priority="medium">Sedang <span>4</span></button>
+            <button class="chip" type="button" data-priority="low">Rendah <span>3</span></button>
+          </div>
+
+          <div class="table-wrap">
+            <table class="lead-table">
+              <thead>
+                <tr>
+                  <th scope="col">Lead</th>
+                  <th scope="col">Sumber</th>
+                  <th scope="col">Prioritas</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Masuk</th>
+                  <th scope="col"><span class="sr-only">Aksi</span></th>
+                </tr>
+              </thead>
+              <tbody id="lead-rows"></tbody>
+            </table>
+          </div>
+
+          <div class="table-empty" id="table-empty" hidden>
+            <span class="empty-icon"><svg><use href="#icon-search"/></svg></span>
+            <h3>Tidak ada lead yang cocok</h3>
+            <p>Coba kata kunci lain atau ubah filter prioritas dan status.</p>
+            <button class="btn btn-soft btn-sm" type="button" id="reset-filters">Reset filter</button>
+          </div>
+        </section>
+
+        <footer class="page-foot">
+          <p>LeadPulse — demo dashboard untuk portofolio otomasi AI. Data bersifat fiktif.</p>
+          <p>Dibangun dengan HTML, CSS, dan JavaScript.</p>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-hidden="true">
+    <div id="drawer-content"></div>
+  </aside>
+  <div class="overlay" id="drawer-overlay" hidden></div>
+
+  <div class="overlay modal-overlay" id="simulate-overlay" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="simulate-title">
+      <div class="modal-head">
+        <div>
+          <p class="eyebrow">Simulasi</p>
+          <h2 id="simulate-title">Tambah lead baru</h2>
+          <p>Isi data di bawah untuk melihat klasifikasi AI berjalan di browser.</p>
+        </div>
+        <button class="icon-btn" type="button" id="simulate-close" aria-label="Tutup">
+          <svg><use href="#icon-x"/></svg>
+        </button>
+      </div>
+
+      <form id="simulate-form" novalidate>
+        <div class="form-grid">
+          <label class="field">
+            <span>Nama</span>
+            <input class="input" type="text" name="name" placeholder="Nama lengkap" required>
+            <small class="error" data-error="name"></small>
+          </label>
+          <label class="field">
+            <span>Perusahaan</span>
+            <input class="input" type="text" name="company" placeholder="Nama bisnis (opsional)">
+          </label>
+          <label class="field">
+            <span>Sumber</span>
+            <select class="select" name="source">
+              <option>Landing Page</option>
+              <option>Instagram</option>
+              <option>WhatsApp</option>
+              <option>Referral</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Budget (opsional)</span>
+            <input class="input" type="text" name="budget" placeholder="Contoh: 8 juta">
+          </label>
+          <label class="field field-full">
+            <span>Pesan</span>
+            <textarea class="textarea" name="message" rows="4" placeholder="Contoh: Butuh otomasi follow-up WhatsApp untuk 3 cabang, budget 8 juta, ingin demo minggu ini." required></textarea>
+            <small class="error" data-error="message"></small>
+          </label>
+        </div>
+        <p class="form-hint"><svg><use href="#icon-sparkles"/></svg> AI demo akan menentukan prioritas, skor, ringkasan, dan draft balasan.</p>
+        <div class="modal-actions">
+          <button class="btn btn-ghost" type="button" id="simulate-cancel">Batal</button>
+          <button class="btn btn-primary" type="submit">
+            <svg><use href="#icon-sparkles"/></svg>
+            Proses lead
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

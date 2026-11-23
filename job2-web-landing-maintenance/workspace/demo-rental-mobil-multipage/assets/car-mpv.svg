@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 280" role="img" aria-label="Ilustrasi mobil MPV">
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#449b7e"/>
+      <stop offset="1" stop-color="#0a4231"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e6f8f1"/>
+      <stop offset="1" stop-color="#93c8b8"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="320" cy="246" rx="256" ry="15" fill="#0b2b22" opacity=".13"/>
+  <path d="M62 198c-8-24 6-42 32-48l86-22 42-54c11-15 28-24 46-24h172c19 0 36 8 47 23l39 53 42 15c24 8 35 27 28 51l-4 12H62z" fill="url(#body)"/>
+  <path d="M248 128l38-66h158l58 66z" fill="url(#glass)"/>
+  <path d="M324 62v66M400 62v66M460 62v66" stroke="#0a4231" stroke-width="5" opacity=".45"/>
+  <path d="M404 134v60" stroke="#073326" stroke-width="3" opacity=".28"/>
+  <rect x="356" y="148" width="26" height="5" rx="2.5" fill="#062d22" opacity=".45"/>
+  <rect x="478" y="148" width="26" height="5" rx="2.5" fill="#062d22" opacity=".45"/>
+  <path d="M94 176h470" stroke="#ffffff" stroke-opacity=".18" stroke-width="3"/>
+  <rect x="68" y="184" width="52" height="13" rx="6" fill="#f5b942"/>
+  <rect x="576" y="184" width="44" height="13" rx="6" fill="#ff6b5e"/>
+  <circle cx="166" cy="208" r="44" fill="#101b18"/>
+  <circle cx="166" cy="208" r="25" fill="#cfdbd6"/>
+  <circle cx="166" cy="208" r="10" fill="#7d8f88"/>
+  <circle cx="478" cy="208" r="44" fill="#101b18"/>
+  <circle cx="478" cy="208" r="25" fill="#cfdbd6"/>
+  <circle cx="478" cy="208" r="10" fill="#7d8f88"/>
+</svg>

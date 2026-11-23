@@ -1,0 +1,457 @@
+{
+  "name": "Lead Capture — AI Klasifikasi & Follow-up",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "lead-capture",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-4000-8000-000000000001",
+      "name": "Webhook — Lead Masuk",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -220,
+        0
+      ],
+      "webhookId": "lead-capture-demo"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Normalisasi data dari webhook agar konsisten sebelum disimpan & diklasifikasi.\nconst input = $json.body ?? $json;\n\nconst clean = (value) => String(value ?? \"\").trim();\n\nconst name = clean(input.name);\nconst email = clean(input.email).toLowerCase();\nlet whatsapp = clean(input.whatsapp || input.phone).replace(/[^\\d+]/g, \"\");\n\nif (whatsapp.startsWith(\"+62\")) whatsapp = \"62\" + whatsapp.slice(3);\nelse if (whatsapp.startsWith(\"0\")) whatsapp = \"62\" + whatsapp.slice(1);\nelse if (whatsapp.startsWith(\"8\")) whatsapp = \"62\" + whatsapp;\n\nconst message = clean(input.message);\n\nif (!name || (!email && !whatsapp) || message.length < 10) {\n  throw new Error(\"Data lead tidak lengkap: butuh nama, email/WhatsApp, dan pesan minimal 10 karakter.\");\n}\n\nconst leadId = \"LD-\" + Date.now().toString(36).toUpperCase() + \"-\" + Math.random().toString(36).slice(2, 6).toUpperCase();\n\nreturn [{\n  json: {\n    lead_id: leadId,\n    created_at: new Date().toISOString(),\n    name,\n    email,\n    whatsapp,\n    company: clean(input.company),\n    source: clean(input.source) || \"website\",\n    budget: clean(input.budget),\n    message,\n    consent: input.consent === true || input.consent === \"true\",\n    status: \"new\"\n  }\n}];"
+      },
+      "id": "a1b2c3d4-0002-4000-8000-000000000002",
+      "name": "Normalisasi Lead",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "PASTE_GOOGLE_SHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Leads",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {}
+        },
+        "options": {}
+      },
+      "id": "a1b2c3d4-0003-4000-8000-000000000003",
+      "name": "Simpan Lead ke Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        220,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "text",
+        "operation": "message",
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "Kamu adalah asisten kualifikasi lead untuk agensi otomasi AI dan web development. Tugasmu menilai kualitas lead B2B dari pesan yang masuk.\n\nKembalikan HANYA JSON valid dengan skema:\n{\n  \"priority\": \"high\" | \"medium\" | \"low\",\n  \"score\": 0-100,\n  \"intent\": \"singkat, snake_case\",\n  \"summary\": \"ringkasan kebutuhan maksimal 2 kalimat\",\n  \"reply_draft\": \"balasan awal yang sopan, personal, dan mengarahkan ke langkah berikutnya\",\n  \"followup_draft\": \"pesan follow-up singkat untuk dikirim 1 hari kemudian\"\n}\n\nAturan prioritas:\n- high: kebutuhan jelas, budget disebut, timeline dekat, atau minta demo/proposal.\n- medium: kebutuhan relevan tetapi detail masih kurang.\n- low: hanya bertanya informasi umum, belum ada kebutuhan spesifik, atau di luar layanan.\n\nGunakan bahasa Indonesia yang natural dan tidak berlebihan. Jangan mengarang harga atau janji yang tidak ada di data."
+            },
+            {
+              "role": "user",
+              "content": "=Data lead:\nNama: {{ $json.name }}\nPerusahaan: {{ $json.company || \"-\" }}\nEmail: {{ $json.email || \"-\" }}\nWhatsApp: {{ $json.whatsapp || \"-\" }}\nSumber: {{ $json.source }}\nBudget yang disebut: {{ $json.budget || \"tidak disebut\" }}\nPesan: {{ $json.message }}"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "id": "a1b2c3d4-0004-4000-8000-000000000004",
+      "name": "AI Klasifikasi Lead",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        440,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Ambil data lead asli dan hasil klasifikasi AI, lalu gabungkan dengan fallback aman.\nlet lead;\ntry {\n  lead = $(\"Normalisasi Lead\").item.json;\n} catch (error) {\n  lead = $json;\n}\n\nconst raw =\n  $json.message?.content ??\n  $json.content ??\n  $json.text ??\n  $json.choices?.[0]?.message?.content ??\n  \"{}\";\n\nlet ai = {};\ntry {\n  const text = typeof raw === \"string\" ? raw : JSON.stringify(raw);\n  const match = text.match(/\\{[\\s\\S]*\\}/);\n  ai = JSON.parse(match ? match[0] : text);\n} catch (error) {\n  ai = {};\n}\n\nconst allowed = [\"high\", \"medium\", \"low\"];\nconst priority = allowed.includes(ai.priority) ? ai.priority : \"medium\";\nconst fallbackScore = priority === \"high\" ? 85 : priority === \"medium\" ? 55 : 25;\nconst score = Math.max(0, Math.min(100, Number(ai.score) || fallbackScore));\n\nconst replyDraft = ai.reply_draft || `Halo ${lead.name}, terima kasih sudah menghubungi kami. Kami sudah menerima kebutuhan Anda dan tim kami akan menghubungi Anda dalam 1x24 jam pada jam kerja.`;\nconst followupDraft = ai.followup_draft || `Halo ${lead.name}, kami ingin menindaklanjuti pesan Anda sebelumnya. Apakah masih ada yang bisa kami bantu? Kami siap mengatur demo singkat sesuai kebutuhan ${lead.company || \"bisnis Anda\"}.`;\n\nreturn [{\n  json: {\n    ...lead,\n    priority,\n    score,\n    intent: ai.intent || \"general_inquiry\",\n    summary: ai.summary || lead.message.slice(0, 160),\n    reply_draft: replyDraft,\n    followup_draft: followupDraft,\n    ai_model: ai.model || \"gpt-4o-mini\",\n    classified_at: new Date().toISOString()\n  }\n}];"
+      },
+      "id": "a1b2c3d4-0005-4000-8000-000000000005",
+      "name": "Parse Hasil AI",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        660,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "cond-high",
+                    "leftValue": "={{ $json.priority }}",
+                    "rightValue": "high",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "high"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "cond-medium",
+                    "leftValue": "={{ $json.priority }}",
+                    "rightValue": "medium",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "medium"
+            }
+          ]
+        },
+        "fallbackOutput": "extra",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0006-4000-8000-000000000006",
+      "name": "Switch Prioritas",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        880,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "#sales-leads",
+          "mode": "name"
+        },
+        "text": "=🔥 *Lead prioritas tinggi*\n\nNama: {{ $json.name }}\nPerusahaan: {{ $json.company || \"-\" }}\nSkor: {{ $json.score }}/100\nSumber: {{ $json.source }}\nKebutuhan: {{ $json.summary }}\n\nSegera hubungi lead ini.",
+        "otherOptions": {}
+      },
+      "id": "a1b2c3d4-0007-4000-8000-000000000007",
+      "name": "Notifikasi Slack Sales",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.2,
+      "position": [
+        1120,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.email || $env.SALES_EMAIL }}",
+        "subject": "=Terima kasih, {{ $json.name }} — kebutuhan Anda sudah kami terima",
+        "message": "={{ $json.reply_draft }}",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0008-4000-8000-000000000008",
+      "name": "Email Balasan Pertama",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1340,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.email || $env.SALES_EMAIL }}",
+        "subject": "=Terima kasih, {{ $json.name }} — kebutuhan Anda sudah kami terima",
+        "message": "={{ $json.reply_draft }}",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0009-4000-8000-000000000009",
+      "name": "Email Balasan Medium",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1120,
+        0
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a1b2c3d4-0010-4000-8000-000000000010",
+      "name": "Masuk Nurture",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 1,
+        "unit": "days"
+      },
+      "id": "a1b2c3d4-0011-4000-8000-000000000011",
+      "name": "Tunggu 1 Hari",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1560,
+        -90
+      ],
+      "webhookId": "lead-followup-wait"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Parse Hasil AI').item.json.email || $env.SALES_EMAIL }}",
+        "subject": "=Tindak lanjut kebutuhan {{ $('Parse Hasil AI').item.json.company || $('Parse Hasil AI').item.json.name }}",
+        "message": "={{ $('Parse Hasil AI').item.json.followup_draft }}",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0012-4000-8000-000000000012",
+      "name": "Email Follow-up H+1",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1780,
+        -90
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "PASTE_GOOGLE_SHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Follow-up Log",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "lead_id": "={{ $('Parse Hasil AI').item.json.lead_id }}",
+            "name": "={{ $('Parse Hasil AI').item.json.name }}",
+            "priority": "={{ $('Parse Hasil AI').item.json.priority }}",
+            "followup_sent_at": "={{ new Date().toISOString() }}",
+            "channel": "email",
+            "status": "sent"
+          }
+        },
+        "options": {}
+      },
+      "id": "a1b2c3d4-0013-4000-8000-000000000013",
+      "name": "Catat Follow-up",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2000,
+        -90
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook — Lead Masuk": {
+      "main": [
+        [
+          {
+            "node": "Normalisasi Lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalisasi Lead": {
+      "main": [
+        [
+          {
+            "node": "Simpan Lead ke Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simpan Lead ke Sheets": {
+      "main": [
+        [
+          {
+            "node": "AI Klasifikasi Lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Klasifikasi Lead": {
+      "main": [
+        [
+          {
+            "node": "Parse Hasil AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Hasil AI": {
+      "main": [
+        [
+          {
+            "node": "Switch Prioritas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch Prioritas": {
+      "main": [
+        [
+          {
+            "node": "Notifikasi Slack Sales",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Email Balasan Medium",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Masuk Nurture",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notifikasi Slack Sales": {
+      "main": [
+        [
+          {
+            "node": "Email Balasan Pertama",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email Balasan Pertama": {
+      "main": [
+        [
+          {
+            "node": "Tunggu 1 Hari",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email Balasan Medium": {
+      "main": [
+        [
+          {
+            "node": "Tunggu 1 Hari",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tunggu 1 Hari": {
+      "main": [
+        [
+          {
+            "node": "Email Follow-up H+1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email Follow-up H+1": {
+      "main": [
+        [
+          {
+            "node": "Catat Follow-up",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": [
+    {
+      "name": "demo"
+    },
+    {
+      "name": "lead-capture"
+    }
+  ]
+}
