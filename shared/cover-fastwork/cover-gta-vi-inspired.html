@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cover GTA VI Inspired</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1280px;height:720px;overflow:hidden;background:#1a0820;font-family:'Montserrat',sans-serif}
+.canvas{position:relative;width:1280px;height:720px;overflow:hidden;
+  background:
+    radial-gradient(ellipse at 50% 105%, rgba(255,176,92,.95) 0%, rgba(255,120,70,.55) 18%, rgba(255,70,130,.18) 38%, transparent 60%),
+    linear-gradient(180deg,#2b0a4a 0%,#6b1b6b 22%,#d64d8a 48%,#ff8a5b 72%,#ffd08a 100%);
+}
+/* sun */
+.sun{position:absolute;left:50%;bottom:175px;width:300px;height:300px;transform:translateX(-50%);border-radius:50%;
+  background:linear-gradient(180deg,#fff2c7 0%,#ffd36d 35%,#ff8a4c 75%,#ff5d7a 100%);
+  box-shadow:0 0 80px rgba(255,160,90,.45);opacity:.95}
+/* palm silhouettes */
+.palm{position:absolute;bottom:170px;fill:#1a0620;opacity:.95}
+.palm-l{left:-40px;width:420px;height:420px}
+.palm-r{right:-30px;width:360px;height:380px;transform:scaleX(-1)}
+/* city silhouette */
+.city{position:absolute;left:0;right:0;bottom:150px;height:180px;background:#1a0620;clip-path:polygon(0 100%,0 72%,4% 72%,4% 58%,7% 58%,7% 40%,10% 40%,10% 62%,13% 62%,13% 48%,16% 48%,16% 66%,20% 66%,20% 34%,23% 34%,23% 54%,26% 54%,26% 44%,29% 44%,29% 70%,33% 70%,33% 38%,36% 38%,36% 56%,40% 56%,40% 28%,43% 28%,43% 60%,47% 60%,47% 42%,50% 42%,50% 65%,54% 65%,54% 36%,58% 36%,58% 52%,61% 52%,61% 30%,64% 30%,64% 58%,68% 58%,68% 44%,72% 44%,72% 68%,76% 68%,76% 40%,79% 40%,79% 56%,83% 56%,83% 34%,86% 34%,86% 62%,90% 62%,90% 46%,93% 46%,93% 70%,96% 70%,96% 54%,100% 54%,100% 100%)}
+/* bottom ground */
+.ground{position:absolute;left:0;right:0;bottom:0;height:170px;background:linear-gradient(180deg,#2a0930 0%,#140518 100%)}
+.grid{position:absolute;left:-10%;right:-10%;bottom:-80px;height:260px;background-image:linear-gradient(rgba(255,140,200,.22) 2px,transparent 2px),linear-gradient(90deg,rgba(255,140,200,.22) 2px,transparent 2px);background-size:80px 40px;transform:perspective(600px) rotateX(68deg);transform-origin:top;opacity:.35}
+/* overlay for readability */
+.overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,5,24,.35) 0%,rgba(20,5,24,.08) 45%,rgba(20,5,24,.25) 100%)}
+.content{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;justify-content:center;padding:64px 84px 120px}
+.badge{display:inline-flex;align-self:flex-start;padding:10px 18px;background:rgba(20,5,24,.35);border:1px solid rgba(255,255,255,.35);color:#fff;font-size:15px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:26px;backdrop-filter:blur(2px)}
+h1{font-family:'Bebas Neue',sans-serif;font-size:108px;line-height:.92;color:#fff;letter-spacing:2px;max-width:980px;text-shadow:0 6px 0 rgba(45,10,60,.35),0 10px 30px rgba(0,0,0,.25)}
+h1 .line2{display:block;color:#ffe3f2;text-shadow:0 6px 0 rgba(45,10,60,.35),0 0 30px rgba(255,120,180,.25)}
+.sub{margin-top:28px;font-size:28px;font-weight:700;color:#fff;max-width:980px;text-shadow:0 2px 10px rgba(0,0,0,.25)}
+.sub span{color:#ffd36d;margin:0 8px}
+.audience{margin-top:30px;display:inline-flex;align-self:flex-start;padding:14px 20px;background:rgba(20,5,24,.32);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:24px;font-weight:600;backdrop-filter:blur(2px)}
+.audience strong{color:#ffd36d;margin-right:10px;font-weight:800}
+/* subtle tech nodes */
+.tech{position:absolute;right:86px;top:120px;width:290px;height:290px;z-index:4;opacity:.9}
+.ring{position:absolute;inset:0;border:2px solid rgba(255,255,255,.35);border-radius:50%}
+.ring2{position:absolute;inset:34px;border:1px solid rgba(255,211,109,.55);border-radius:50%}
+.tnode{position:absolute;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 0 0 6px rgba(255,255,255,.12),0 0 18px rgba(255,211,109,.5)}
+.t1{top:8px;left:136px}.t2{top:136px;right:8px;background:#ffd36d}.t3{bottom:8px;left:136px}.t4{top:136px;left:8px;background:#ffd36d}.t5{top:136px;left:136px;width:24px;height:24px;margin:-3px;background:#ff7aa8}
+.tline{position:absolute;top:145px;left:145px;height:2px;background:rgba(255,255,255,.55);transform-origin:left center}
+.tl1{width:128px;transform:rotate(0deg)}.tl2{width:128px;transform:rotate(90deg)}.tl3{width:128px;transform:rotate(180deg)}.tl4{width:128px;transform:rotate(270deg)}
+/* bottom bar */
+.bottom{position:absolute;left:0;right:0;bottom:0;height:10px;background:linear-gradient(90deg,#ffd36d,#ff7aa8,#7b61ff);z-index:6}
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="sun"></div>
+  <svg class="palm palm-l" viewBox="0 0 400 400"><path d="M210 400 L235 400 L250 250 C265 220 290 205 330 210 C300 190 270 190 245 200 C260 175 290 160 330 155 C290 140 255 145 230 165 C235 135 250 115 280 95 C240 95 210 115 195 145 C185 115 165 90 130 80 C145 110 150 135 150 165 C125 145 95 140 55 150 C95 160 120 175 135 200 C110 190 80 190 45 210 C90 205 115 220 130 250 Z"/></svg>
+  <svg class="palm palm-r" viewBox="0 0 400 400"><path d="M210 400 L235 400 L250 250 C265 220 290 205 330 210 C300 190 270 190 245 200 C260 175 290 160 330 155 C290 140 255 145 230 165 C235 135 250 115 280 95 C240 95 210 115 195 145 C185 115 165 90 130 80 C145 110 150 135 150 165 C125 145 95 140 55 150 C95 160 120 175 135 200 C110 190 80 190 45 210 C90 205 115 220 130 250 Z"/></svg>
+  <div class="city"></div>
+  <div class="ground"></div>
+  <div class="grid"></div>
+  <div class="overlay"></div>
+
+  <div class="content">
+
+    <h1>WEB DEVELOPMENT <span class="line2">&amp; AI WORKFLOW AUTOMATION</span></h1>
+    <div class="sub">Landing Pages <span>•</span> Business Websites <span>•</span> AI Integration <span>•</span> Business Automation</div>
+    <div class="audience"><strong>Cocok untuk:</strong> UMKM • Bisnis Lokal • Startup • Personal Brand • Perusahaan</div>
+  </div>
+  <div class="bottom"></div>
+</div>
+</body>
+</html>

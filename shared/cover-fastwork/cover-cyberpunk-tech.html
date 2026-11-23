@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cover Cyberpunk Tech</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1280px;height:720px;overflow:hidden;background:#050814;font-family:'Rajdhani',sans-serif}
+.canvas{position:relative;width:1280px;height:720px;overflow:hidden;background:radial-gradient(ellipse at 70% 30%, #0d1b3a 0%, #070b18 45%, #03050d 100%)}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,255,.07) 1px,transparent 1px);background-size:48px 48px;transform:perspective(900px) rotateX(55deg) translateY(120px) scale(1.8);transform-origin:bottom;opacity:.35}
+.glow-cyan{position:absolute;width:520px;height:520px;left:-120px;top:-120px;background:radial-gradient(circle,rgba(0,245,255,.28),transparent 68%)}
+.glow-mag{position:absolute;width:560px;height:560px;right:-80px;bottom:-160px;background:radial-gradient(circle,rgba(255,0,170,.22),transparent 68%)}
+.glow-purple{position:absolute;width:420px;height:420px;right:220px;top:-60px;background:radial-gradient(circle,rgba(130,70,255,.18),transparent 70%)}
+.scan{position:absolute;inset:0;background:repeating-linear-gradient(to bottom,transparent 0,transparent 3px,rgba(255,255,255,.015) 3px,rgba(255,255,255,.015) 4px);pointer-events:none}
+.frame{position:absolute;inset:24px;border:1px solid rgba(0,245,255,.22);box-shadow:inset 0 0 0 1px rgba(255,0,170,.08)}
+.corner{position:absolute;width:28px;height:28px;border-color:#00f5ff;border-style:solid;filter:drop-shadow(0 0 6px rgba(0,245,255,.8))}
+.c1{top:16px;left:16px;border-width:3px 0 0 3px}.c2{top:16px;right:16px;border-width:3px 3px 0 0}.c3{bottom:16px;left:16px;border-width:0 0 3px 3px}.c4{bottom:16px;right:16px;border-width:0 3px 3px 0}
+.content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:72px 88px;z-index:2}
+.tag{display:inline-flex;align-self:flex-start;padding:8px 16px;border:1px solid rgba(0,245,255,.45);color:#00f5ff;font-size:16px;font-weight:700;letter-spacing:3px;text-transform:uppercase;background:rgba(0,245,255,.06);margin-bottom:28px;box-shadow:0 0 18px rgba(0,245,255,.12)}
+h1{font-family:'Orbitron',sans-serif;font-size:64px;line-height:1.05;font-weight:900;color:#fff;max-width:900px;text-transform:uppercase;letter-spacing:1px;text-shadow:0 0 24px rgba(0,245,255,.25)}
+h1 .accent{display:block;color:#00f5ff;text-shadow:0 0 18px rgba(0,245,255,.55),0 0 40px rgba(0,245,255,.25)}
+.sub{margin-top:28px;font-size:30px;font-weight:600;color:#dce7ff;letter-spacing:.5px}
+.sub span{color:#ff4ecb;margin:0 10px}
+.audience{margin-top:36px;display:inline-flex;align-self:flex-start;gap:0;padding:14px 20px;background:linear-gradient(90deg,rgba(255,0,170,.12),rgba(0,245,255,.08));border-left:3px solid #ff4ecb;color:#f3f6ff;font-size:24px;font-weight:600}
+.audience strong{color:#00f5ff;margin-right:10px;font-weight:700}
+/* right side visual */
+.visual{position:absolute;right:70px;top:90px;width:360px;height:540px;z-index:1}
+.panel{position:absolute;border:1px solid rgba(0,245,255,.35);background:rgba(6,16,35,.55);backdrop-filter:blur(2px);box-shadow:0 0 24px rgba(0,245,255,.08),inset 0 0 30px rgba(0,245,255,.03)}
+.p1{top:0;right:0;width:280px;height:170px;padding:18px}
+.p2{top:200px;right:60px;width:260px;height:150px;padding:18px;border-color:rgba(255,78,203,.35)}
+.p3{top:380px;right:10px;width:300px;height:140px;padding:18px}
+.ptitle{font-size:13px;letter-spacing:2px;color:#00f5ff;font-weight:700;margin-bottom:14px;text-transform:uppercase}
+.p2 .ptitle{color:#ff4ecb}
+.bar{height:8px;background:rgba(255,255,255,.08);margin-bottom:10px;position:relative;overflow:hidden}
+.bar::after{content:'';position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#00f5ff,#5b8cff)}
+.b1::after{width:88%}.b2::after{width:72%}.b3::after{width:94%}
+.node-wrap{position:relative;height:90px}
+.node{position:absolute;width:34px;height:34px;border-radius:50%;border:2px solid #00f5ff;background:rgba(0,245,255,.12);box-shadow:0 0 12px rgba(0,245,255,.5)}
+.n1{left:10px;top:28px}.n2{left:105px;top:8px;border-color:#ff4ecb;background:rgba(255,78,203,.12);box-shadow:0 0 12px rgba(255,78,203,.5)}.n3{left:105px;top:52px}.n4{left:200px;top:28px;border-color:#8b5cf6;background:rgba(139,92,246,.12);box-shadow:0 0 12px rgba(139,92,246,.5)}
+.line{position:absolute;height:2px;background:linear-gradient(90deg,#00f5ff,#ff4ecb);transform-origin:left center;box-shadow:0 0 8px rgba(0,245,255,.5)}
+.l1{left:42px;top:44px;width:65px;transform:rotate(-18deg)}.l2{left:42px;top:46px;width:65px;transform:rotate(18deg)}.l3{left:137px;top:24px;width:65px;transform:rotate(18deg)}.l4{left:137px;top:66px;width:65px;transform:rotate(-18deg)}
+.code{font-family:monospace;font-size:13px;color:#8fd3ff;line-height:1.7;opacity:.9}
+.code em{color:#ff4ecb;font-style:normal}.code b{color:#00f5ff;font-weight:normal}
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="grid"></div>
+  <div class="glow-cyan"></div><div class="glow-mag"></div><div class="glow-purple"></div>
+  <div class="scan"></div>
+  <div class="frame"></div>
+  <div class="corner c1"></div><div class="corner c2"></div><div class="corner c3"></div><div class="corner c4"></div>
+  <div class="visual">
+    <div class="panel p1">
+      <div class="ptitle">Web Interface</div>
+      <div class="bar b1"></div><div class="bar b2"></div><div class="bar b3"></div>
+      <div style="margin-top:18px;height:52px;border:1px solid rgba(0,245,255,.25);background:linear-gradient(90deg,rgba(0,245,255,.12),rgba(255,78,203,.08))"></div>
+    </div>
+    <div class="panel p2">
+      <div class="ptitle">AI Workflow</div>
+      <div class="node-wrap">
+        <div class="line l1"></div><div class="line l2"></div><div class="line l3"></div><div class="line l4"></div>
+        <div class="node n1"></div><div class="node n2"></div><div class="node n3"></div><div class="node n4"></div>
+      </div>
+    </div>
+    <div class="panel p3">
+      <div class="ptitle">Automation</div>
+      <div class="code"><b>trigger</b> → <em>ai_process</em><br><b>integrate</b> → <em>deploy</em><br><b>status</b>: <span style="color:#6affb0">optimized</span></div>
+    </div>
+  </div>
+  <div class="content">
+
+    <h1>Web Development <span class="accent">&amp; AI Workflow Automation</span></h1>
+    <div class="sub">Landing Pages <span>•</span> Business Websites <span>•</span> AI Integration <span>•</span> Business Automation</div>
+    <div class="audience"><strong>Cocok untuk:</strong> UMKM • Bisnis Lokal • Startup • Personal Brand • Perusahaan</div>
+  </div>
+</div>
+</body>
+</html>

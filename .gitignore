@@ -1,0 +1,13 @@
+# OS/editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Logs/temp
+*.log
+/tmp/
+
+# Third-party reference repos (cloned for inspiration, not project source)
+job1-otomasi-ai-workflow/resources/
+job2-web-landing-maintenance/resources/
