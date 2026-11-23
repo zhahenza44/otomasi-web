@@ -22,17 +22,6 @@ Freelance-Otomasi-Web/
     └── templates/             # Template proposal, pesan klien, checklist umum
 ```
 
-## Resource GitHub yang sudah di-clone
-
-### Job 1 — `job1-otomasi-ai-workflow/resources/`
-| Repo | Sumber | Kegunaan |
-|---|---|---|
-| `awesome-n8n-templates/` | https://github.com/enescingoz/awesome-n8n-templates | Kumpulan template workflow n8n (otomasi, AI agent, RAG, integrasi layanan). |
-| `n8n-ai-automations/` | https://github.com/lucaswalter/n8n-ai-automations | Contoh workflow & automasi AI berbasis n8n. |
-| `Hexabot/` | https://github.com/hexabot-ai/Hexabot | Platform/workflow automation & conversational/agent runtime sebagai referensi arsitektur. |
-| `awesome-ai-agent-platforms/` | https://github.com/Agenta-AI/awesome-ai-agent-platforms | Kurasi platform/framework agent & workflow automation open-source. |
-| `patchwork/` | https://github.com/patched-codes/patchwork | Referensi framework agentic workflow automation. |
-
 ## Demo portofolio Job 2
 
 | Demo | Niche | Fokus demo | Lokasi |
