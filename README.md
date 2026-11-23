@@ -1,6 +1,6 @@
-# Freelance: Otomasi AI/Workflow + Web Landing Page & Maintenance
+# Otomasi AI/Workflow + Web Landing Page & Maintenance
 
-Workspace terpadu untuk dua fokus jasa freelance:
+Workspace untuk dua fokus jasa freelance:
 - **Job 1:** Otomasi & integrasi AI/workflow
 - **Job 2:** Web development/landing page + maintenance
 
@@ -22,17 +22,6 @@ Freelance-Otomasi-Web/
     └── templates/             # Template proposal, pesan klien, checklist umum
 ```
 
-## Resource GitHub yang sudah di-clone
-
-### Job 1 — `job1-otomasi-ai-workflow/resources/`
-| Repo | Sumber | Kegunaan |
-|---|---|---|
-| `awesome-n8n-templates/` | https://github.com/enescingoz/awesome-n8n-templates | Kumpulan template workflow n8n (otomasi, AI agent, RAG, integrasi layanan). |
-| `n8n-ai-automations/` | https://github.com/lucaswalter/n8n-ai-automations | Contoh workflow & automasi AI berbasis n8n. |
-| `Hexabot/` | https://github.com/hexabot-ai/Hexabot | Platform/workflow automation & conversational/agent runtime sebagai referensi arsitektur. |
-| `awesome-ai-agent-platforms/` | https://github.com/Agenta-AI/awesome-ai-agent-platforms | Kurasi platform/framework agent & workflow automation open-source. |
-| `patchwork/` | https://github.com/patched-codes/patchwork | Referensi framework agentic workflow automation. |
-
 ### Job 2 — `job2-web-landing-maintenance/resources/`
 | Repo | Sumber | Kegunaan |
 |---|---|---|
@@ -52,10 +41,3 @@ Freelance-Otomasi-Web/
 
 Keduanya berupa HTML/CSS/JS statis tanpa dependency. Buka `index.html` langsung di browser, atau jalankan local server dari folder masing-masing. Detail kustomisasi ada di `README.md` tiap demo.
 
-## Saran alur kerja
-1. **Job 1:** pilih platform utama (mis. n8n) dan gunakan `resources/` sebagai referensi template/pola, lalu kerjakan implementasi klien di `job1-otomasi-ai-workflow/workspace/`.
-2. **Job 2:** pilih base stack (Next.js atau Astro) dari `resources/`, salin/duplikasi ke `job2-web-landing-maintenance/workspace/<nama-project-klien>/`, lalu kustomisasi.
-3. Simpan brief, requirement, kredensial non-rahasia (catatan akses), dan checklist di folder `docs/` masing-masing job.
-4. Gunakan `shared/` untuk materi lintas job (proposal, pricing, template komunikasi klien).
-
-> Catatan: repo di `resources/` di-clone sebagai referensi (shallow clone). Untuk project klien, buat salinan terpisah di `workspace/` agar riwayat dan perubahan tetap rapi.
