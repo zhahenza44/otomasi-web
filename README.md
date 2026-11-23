@@ -7,7 +7,7 @@ Workspace untuk dua fokus jasa freelance:
 ## Struktur folder
 
 ```text
-Freelance-Otomasi-Web/
+Otomasi-Web/
 ├── README.md
 ├── job1-otomasi-ai-workflow/
 │   ├── docs/                  # Catatan, SOP, requirement klien, proposal
