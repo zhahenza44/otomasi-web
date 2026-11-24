@@ -24,15 +24,6 @@ Demo portofolio **Job 2: web development / landing page + maintenance**. Website
 - **SEO dasar**: meta description, Open Graph, JSON-LD `AutoRental`, judul per halaman.
 - **Tanpa build step**: cukup buka `index.html` atau jalankan static server.
 
-## Cara menjalankan
-
-```bash
-cd job2-web-landing-maintenance/workspace/demo-rental-mobil-multipage
-python3 -m http.server 8000
-```
-
-Buka `http://localhost:8000`.
-
 ## Catatan untuk klien
 
 - Nomor WhatsApp, alamat, dan harga adalah contoh. Ganti di `js/data.js` dan HTML terkait.

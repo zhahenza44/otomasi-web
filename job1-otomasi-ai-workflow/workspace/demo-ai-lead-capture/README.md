@@ -21,18 +21,7 @@ Demo portofolio **Job 1: otomasi & integrasi AI/workflow**. Menunjukkan alur len
 5. Lead `high` memicu notifikasi Slack; `high`/`medium` mendapat email balasan.
 6. Follow-up otomatis dikirim 1 hari kemudian dan dicatat di sheet log.
 
-## Menjalankan dashboard
-
-Dashboard adalah mock statis tanpa backend:
-
-```bash
-cd job1-otomasi-ai-workflow/workspace/demo-ai-lead-capture
-python3 -m http.server 8000
-```
-
-Buka `http://localhost:8000/dashboard/`.
-
-Fitur dashboard:
+## Fitur dashboard
 
 - KPI total lead, lead panas, waktu respons, dan follow-up.
 - Grafik lead 7 hari terakhir dan distribusi sumber.

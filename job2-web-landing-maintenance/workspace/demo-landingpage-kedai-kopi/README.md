@@ -18,17 +18,6 @@ demo-landingpage-kedai-kopi/
 └── README.md
 ```
 
-## Cara menjalankan
-HTML/CSS/JS statis, tidak perlu install dependency.
-
-- Buka `index.html` langsung di browser.
-- Opsional local server:
-  ```bash
-  cd /home/asnodt/Projects/Freelance-Otomasi-Web/job2-web-landing-maintenance/workspace/demo-landingpage-kedai-kopi
-  python -m http.server 8080
-  ```
-  Lalu buka `http://localhost:8080`.
-
 ## Yang bisa dikustomisasi cepat
 Di `index.html`:
 - Brand/nama kedai: “Kedai Kopi Oak”

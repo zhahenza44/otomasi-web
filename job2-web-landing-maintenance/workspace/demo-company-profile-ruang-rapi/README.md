@@ -21,17 +21,6 @@ demo-company-profile-ruang-rapi/
 └── README.md
 ```
 
-## Cara menjalankan
-Project HTML/CSS/JS statis, tanpa dependency atau build step.
-
-- **Cara cepat:** buka `index.html` langsung di browser.
-- **Opsional (local server):**
-  ```bash
-  cd /home/asnodt/Projects/Freelance-Otomasi-Web/job2-web-landing-maintenance/workspace/demo-company-profile-ruang-rapi
-  python3 -m http.server 8080
-  ```
-  Lalu buka `http://localhost:8080`.
-
 ## Fitur demo
 - Responsif untuk mobile, tablet, dan desktop.
 - **Before/after slider** yang bisa digeser dengan mouse, sentuhan, atau keyboard (arrow, Home, End).

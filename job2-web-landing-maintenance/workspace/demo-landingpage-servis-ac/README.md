@@ -18,17 +18,6 @@ demo-landingpage-servis-ac/
 └── README.md
 ```
 
-## Cara menjalankan
-Ini project HTML/CSS/JS statis, tidak perlu install dependency.
-
-- **Cara cepat:** buka `index.html` langsung di browser.
-- **Opsional (local server):**
-  ```bash
-  cd /home/asnodt/Projects/Freelance-Otomasi-Web/job2-web-landing-maintenance/workspace/demo-landingpage-servis-ac
-  python -m http.server 8080
-  ```
-  Lalu buka `http://localhost:8080`.
-
 ## Yang bisa dikustomisasi cepat
 Di `index.html`:
 - **Brand/nama usaha:** "SejukBerkah AC", inisial "SB"
