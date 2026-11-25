@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="id" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NIGHT//SHIFT — Digital Studio</title>
+  <meta name="description" content="NIGHT//SHIFT adalah studio digital fiksi yang merancang landing page, company profile, dan sistem otomasi AI untuk brand yang ingin bergerak lebih cepat.">
+  <meta name="theme-color" content="#050609">
+  <meta property="og:title" content="NIGHT//SHIFT — Digital Studio">
+  <meta property="og:description" content="Web yang tidak bisa diabaikan. Landing page, company profile, dan otomasi AI.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>document.documentElement.classList.remove("no-js");document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Langsung ke konten</a>
+
+  <div class="boot" id="boot" aria-hidden="true">
+    <div class="boot-inner">
+      <span class="boot-mark">N<span>//</span>S</span>
+      <div class="boot-log">
+        <span>INITIALIZING INTERFACE...</span>
+        <span>LOADING SIGNAL...</span>
+        <span>CALIBRATING GRID...</span>
+      </div>
+      <div class="boot-bar"><span></span></div>
+      <span class="boot-status">SYSTEM ONLINE</span>
+    </div>
+  </div>
+
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor-ring" id="cursor-ring">
+      <span class="cursor-label">OPEN</span>
+    </div>
+    <div class="cursor-dot" id="cursor-dot"></div>
+  </div>
+
+  <div class="fx-noise" aria-hidden="true"></div>
+  <div class="fx-scan" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress"></span></div>
+
+  <header class="site-header" id="site-header">
+    <a class="brand" href="#top" aria-label="NIGHT SHIFT — kembali ke atas">
+      <span class="brand-mark">N<span>//</span>S</span>
+      <span class="brand-meta">DIGITAL STUDIO<br>JKT — ID</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Navigasi utama">
+      <a href="#work"><span>01</span>Work</a>
+      <a href="#services"><span>02</span>Services</a>
+      <a href="#process"><span>03</span>Process</a>
+      <a href="#contact"><span>04</span>Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <span class="status-pill"><i></i>OPEN FOR Q1 2027</span>
+      <a class="btn btn--small magnetic" href="#contact"><span>Start a project</span><i>↗</i></a>
+      <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Buka menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true" inert>
+    <nav aria-label="Navigasi mobile">
+      <a href="#work"><span>01</span>Work</a>
+      <a href="#services"><span>02</span>Services</a>
+      <a href="#process"><span>03</span>Process</a>
+      <a href="#contact"><span>04</span>Contact</a>
+    </nav>
+    <div class="mobile-menu-foot">
+      <span>JAKARTA, ID</span>
+      <a href="mailto:hello@nightshift.studio">HELLO@NIGHTSHIFT.STUDIO</a>
+    </div>
+  </div>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-horizon" aria-hidden="true"></div>
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-rings" aria-hidden="true"></div>
+      <div class="hero-particles" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+      <div class="ghost-layer" id="ghost-layer" aria-hidden="true">
+        <div class="scan-box" id="scan-box">
+          <span class="scan-corner tl"></span><span class="scan-corner tr"></span>
+          <span class="scan-corner bl"></span><span class="scan-corner br"></span>
+          <span class="scan-label" id="scan-label">SCAN</span>
+        </div>
+        <div class="ghost-cursor ghost-cursor--cyan" data-ghost="0">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 3l13 8.5-6.2 1.7L8.2 20z" fill="currentColor" stroke="rgba(4,6,10,.5)" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          <span class="ghost-tag">SCAN</span>
+        </div>
+        <div class="ghost-cursor ghost-cursor--magenta" data-ghost="1">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 3l13 8.5-6.2 1.7L8.2 20z" fill="currentColor" stroke="rgba(4,6,10,.5)" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          <span class="ghost-tag">SELECT</span>
+        </div>
+        <div class="ghost-cursor ghost-cursor--amber" data-ghost="2">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 3l13 8.5-6.2 1.7L8.2 20z" fill="currentColor" stroke="rgba(4,6,10,.5)" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          <span class="ghost-tag">CLICK</span>
+        </div>
+      </div>
+
+      <div class="wrap hero-inner">
+        <div class="hero-kicker">
+          <span class="tag">[ N//S — 001 ]</span>
+          <span class="tag">DIGITAL STUDIO</span>
+          <span class="tag">EST. 2020</span>
+        </div>
+
+        <div class="hero-title-wrap">
+          <h1 class="hero-title" aria-label="Web yang tidak bisa diabaikan.">
+            <span class="title-line"><span class="title-inner">WEB YANG</span></span>
+            <span class="title-line"><span class="title-inner">TIDAK BISA</span></span>
+            <span class="title-line title-line--accent"><span class="title-inner" id="hero-scramble">DIABAIKAN.</span></span>
+          </h1>
+
+          <div class="hero-orb" aria-hidden="true">
+            <svg viewBox="0 0 420 420" role="presentation">
+              <defs>
+                <path id="orb-path" d="M210,210 m-168,0 a168,168 0 1,1 336,0 a168,168 0 1,1 -336,0"/>
+              </defs>
+              <circle class="orb-line" cx="210" cy="210" r="196"/>
+              <circle class="orb-line orb-line--dash" cx="210" cy="210" r="168"/>
+              <circle class="orb-line orb-line--thin" cx="210" cy="210" r="104"/>
+              <g class="orb-copy">
+                <text class="orb-text"><textPath href="#orb-path" startOffset="0%">NIGHT//SHIFT — DIGITAL STUDIO — OPEN FOR PROJECTS — </textPath></text>
+              </g>
+              <path class="orb-cross" d="M210 8v34M210 378v34M8 210h34M378 210h34"/>
+              <circle class="orb-core" cx="210" cy="210" r="5"/>
+              <text class="orb-mark" x="210" y="229" text-anchor="middle">N//S</text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="hero-lower">
+          <div class="hero-copy">
+            <p>Kami merancang landing page, company profile, dan sistem otomasi AI untuk brand yang ingin bergerak lebih cepat dari zamannya.</p>
+            <div class="hero-actions">
+              <a class="btn btn--primary magnetic" href="#contact"><span>Mulai proyek</span><i>↗</i></a>
+              <a class="btn btn--ghost magnetic" href="#work"><span>Lihat karya</span><i>↓</i></a>
+            </div>
+          </div>
+
+          <dl class="hero-stats">
+            <div><dt>Proyek</dt><dd><span class="count" data-count="40">40</span>+</dd></div>
+            <div><dt>Pengalaman</dt><dd><span class="count" data-count="6">6</span>+ thn</dd></div>
+            <div><dt>Respons</dt><dd>&lt;24<span>j</span></dd></div>
+          </dl>
+        </div>
+
+        <div class="hero-foot">
+          <span class="mono">LAT -6.2088 / LON 106.8456</span>
+          <span class="mono">SIGNAL <b>98.2%</b></span>
+          <a class="scroll-cue" href="#studio"><span>SCROLL TO EXPLORE</span><i></i></a>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>WEB EXPERIENCE <b>✦</b> AI AUTOMATION <b>✦</b> LANDING PAGE <b>✦</b> MAINTENANCE <b>✦</b> BRAND INTERFACE <b>✦</b></span>
+        <span>WEB EXPERIENCE <b>✦</b> AI AUTOMATION <b>✦</b> LANDING PAGE <b>✦</b> MAINTENANCE <b>✦</b> BRAND INTERFACE <b>✦</b></span>
+      </div>
+    </div>
+
+    <section class="section manifesto" id="studio">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="section-index">01</span>
+          <span class="section-label">MANIFESTO</span>
+          <span class="section-line"></span>
+          <span class="section-meta">N//S — CORE</span>
+        </div>
+
+        <div class="manifesto-grid">
+          <div class="manifesto-main">
+            <h2 class="section-title reveal">Bukan sekadar <em>tampilan.</em></h2>
+            <p class="manifesto-copy" data-words>Web bukan brosur digital. Ia adalah ruang, ritme, dan sinyal. Kami membangun pengalaman yang membuat orang berhenti, merasa, lalu bertindak.</p>
+            <p class="manifesto-sub reveal">Dari landing page sampai otomasi AI, setiap detail punya alasan. Tidak ada animasi yang sekadar menghias.</p>
+          </div>
+
+          <aside class="spec-panel reveal" aria-label="Spesifikasi studio">
+            <div class="panel-head"><span>SYSTEM SPEC</span><span>v.2026</span></div>
+            <dl>
+              <div><dt>FOCUS</dt><dd>Web &amp; Automation</dd></div>
+              <div><dt>BASE</dt><dd>Jakarta, ID</dd></div>
+              <div><dt>MODE</dt><dd>Remote / Worldwide</dd></div>
+              <div><dt>STACK</dt><dd>HTML / CSS / JS · n8n · OpenAI</dd></div>
+              <div><dt>STATUS</dt><dd><span class="ok">OPEN</span> — Q1 2027</dd></div>
+            </dl>
+            <div class="spec-bars" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section work" id="work">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="section-index">02</span>
+          <span class="section-label">SELECTED WORK</span>
+          <span class="section-line"></span>
+          <span class="section-meta">03 FILES</span>
+        </div>
+
+        <div class="work-intro">
+          <h2 class="section-title section-title--xl reveal">Karya yang<br><em>meninggalkan</em><br>jejak.</h2>
+          <div class="work-note reveal">
+            <p>Tiga studi kasus fiktif untuk menunjukkan cara kami berpikir, mendesain, dan membangun.</p>
+            <span class="mono">SCROLL TO OPEN FILES ↓</span>
+          </div>
+        </div>
+
+        <div class="project-stack">
+          <article class="project-card" data-project="hypermart">
+            <div class="project-visual project-visual--hypermart" aria-hidden="true">
+              <span class="pv-index">01</span>
+              <span class="pv-word">HYPE</span>
+              <span class="pv-tag">DROP 004 // SOLD OUT</span>
+              <span class="pv-cross pv-cross--tl"></span>
+              <span class="pv-cross pv-cross--br"></span>
+            </div>
+            <div class="project-body">
+              <div class="project-top"><span class="mono">01 / E-COMMERCE</span><span class="mono">2026</span></div>
+              <h3>HYPERMART</h3>
+              <p>Platform drop streetwear dengan katalog cepat, countdown rilis, dan checkout yang tidak bikin pembeli kabur.</p>
+              <ul class="project-tags"><li>Art direction</li><li>E-commerce</li><li>Next.js</li></ul>
+              <div class="project-metrics">
+                <div><strong>+38%</strong><span>conversion</span></div>
+                <div><strong>120+</strong><span>SKU aktif</span></div>
+                <div><strong>2.4s</strong><span>LCP</span></div>
+              </div>
+              <button class="project-link" type="button" data-open-project="hypermart" aria-haspopup="dialog">OPEN CASE FILE <span>↗</span></button>
+            </div>
+          </article>
+
+          <article class="project-card project-card--reverse" data-project="aegis">
+            <div class="project-visual project-visual--aegis" aria-hidden="true">
+              <span class="pv-index">02</span>
+              <span class="pv-word">AEGIS</span>
+              <span class="pv-tag">84% AUTO-RESOLVED</span>
+              <span class="pv-cross pv-cross--tl"></span>
+              <span class="pv-cross pv-cross--br"></span>
+            </div>
+            <div class="project-body">
+              <div class="project-top"><span class="mono">02 / AI AUTOMATION</span><span class="mono">2026</span></div>
+              <h3>AEGIS</h3>
+              <p>Asisten AI customer service yang menyaring pertanyaan berulang, mengambil data pesanan, dan meneruskan sisanya ke manusia.</p>
+              <ul class="project-tags"><li>AI workflow</li><li>n8n</li><li>WhatsApp</li></ul>
+              <div class="project-metrics">
+                <div><strong>-72%</strong><span>response time</span></div>
+                <div><strong>84%</strong><span>auto-resolved</span></div>
+                <div><strong>24/7</strong><span>coverage</span></div>
+              </div>
+              <button class="project-link" type="button" data-open-project="aegis" aria-haspopup="dialog">OPEN CASE FILE <span>↗</span></button>
+            </div>
+          </article>
+
+          <article class="project-card" data-project="voidhotel">
+            <div class="project-visual project-visual--void" aria-hidden="true">
+              <span class="pv-index">03</span>
+              <span class="pv-word">VOID</span>
+              <span class="pv-tag">CHECK-IN 00:00</span>
+              <span class="pv-cross pv-cross--tl"></span>
+              <span class="pv-cross pv-cross--br"></span>
+            </div>
+            <div class="project-body">
+              <div class="project-top"><span class="mono">03 / HOSPITALITY</span><span class="mono">2025</span></div>
+              <h3>VOID HOTEL</h3>
+              <p>Website booking langsung untuk hotel butik: kamar terasa nyata sebelum check-in, tanpa potongan marketplace.</p>
+              <ul class="project-tags"><li>Hospitality</li><li>Booking</li><li>CMS</li></ul>
+              <div class="project-metrics">
+                <div><strong>+54%</strong><span>direct booking</span></div>
+                <div><strong>-31%</strong><span>bounce rate</span></div>
+                <div><strong>4.8/5</strong><span>guest rating</span></div>
+              </div>
+              <button class="project-link" type="button" data-open-project="voidhotel" aria-haspopup="dialog">OPEN CASE FILE <span>↗</span></button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section services" id="services">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="section-index">03</span>
+          <span class="section-label">CAPABILITIES</span>
+          <span class="section-line"></span>
+          <span class="section-meta">04 MODULES</span>
+        </div>
+
+        <div class="services-intro">
+          <h2 class="section-title reveal">Yang bisa<br><em>kami bangun.</em></h2>
+          <p class="section-note reveal">Bukan daftar jasa yang panjang. Empat hal yang kami kerjakan dengan serius, dari strategi sampai setelah launch.</p>
+        </div>
+
+        <div class="service-grid">
+          <article class="service-card reveal" data-service>
+            <div class="service-head"><span class="service-no">01</span><span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="1.5"/><path d="M3 8h18M7 12l2 2-2 2M12 16h5"/></svg></span><span class="service-arrow">↗</span></div>
+            <h3>WEB EXPERIENCE</h3>
+            <p>Landing page, company profile, katalog, dan e-commerce yang cepat, responsif, dan tidak terasa seperti template.</p>
+            <ul class="service-tags"><li>Design</li><li>Frontend</li><li>CMS</li></ul>
+          </article>
+
+          <article class="service-card reveal" data-service style="--delay:.08s">
+            <div class="service-head"><span class="service-no">02</span><span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 11l10-4M7 13l10 4M19 8v8"/></svg></span><span class="service-arrow">↗</span></div>
+            <h3>AI AUTOMATION</h3>
+            <p>Lead capture, follow-up, integrasi Sheets/CRM, dan asisten AI yang mengurangi kerja repetitif tim kamu.</p>
+            <ul class="service-tags"><li>n8n</li><li>OpenAI</li><li>Integrasi</li></ul>
+          </article>
+
+          <article class="service-card reveal" data-service style="--delay:.16s">
+            <div class="service-head"><span class="service-no">03</span><span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M8 12h2l1.5-3 2 6 1.5-3h3"/></svg></span><span class="service-arrow">↗</span></div>
+            <h3>MAINTENANCE</h3>
+            <p>Update konten, monitoring, backup, dan perbaikan. Website tetap hidup dan aman setelah launch.</p>
+            <ul class="service-tags"><li>Monitoring</li><li>Backup</li><li>Support</li></ul>
+          </article>
+
+          <article class="service-card reveal" data-service style="--delay:.24s">
+            <div class="service-head"><span class="service-no">04</span><span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 20L12 4l8 16M7 14h10"/><path d="M4 4h4M4 4v4M20 20h-4M20 20v-4"/></svg></span><span class="service-arrow">↗</span></div>
+            <h3>BRAND INTERFACE</h3>
+            <p>Arah visual, design system, dan motion yang konsisten di setiap layar dan touchpoint.</p>
+            <ul class="service-tags"><li>Identity</li><li>Design system</li><li>Motion</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section process" id="process">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="section-index">04</span>
+          <span class="section-label">PROCESS</span>
+          <span class="section-line"></span>
+          <span class="section-meta">SIGNAL → SYSTEM</span>
+        </div>
+
+        <div class="process-grid">
+          <div class="process-sticky">
+            <h2 class="section-title reveal">Dari sinyal<br><em>ke sistem.</em></h2>
+            <p class="section-note reveal">Proses yang jelas, preview yang bisa diklik, dan tidak ada kejutan di akhir.</p>
+            <span class="process-chip reveal"><i></i>AVG. TIMELINE 2–4 WEEKS</span>
+          </div>
+
+          <ol class="process-list" id="process-list">
+            <span class="process-fill" id="process-fill" aria-hidden="true"></span>
+            <li class="process-step">
+              <span class="step-no">01</span>
+              <div class="step-body"><span class="step-phase">SIGNAL</span><h3>Brief &amp; discovery</h3><p>Kami petakan tujuan, audiens, kompetitor, dan metrik keberhasilan sebelum menyentuh desain.</p></div>
+              <span class="step-time">H+1</span>
+            </li>
+            <li class="process-step">
+              <span class="step-no">02</span>
+              <div class="step-body"><span class="step-phase">BLUEPRINT</span><h3>Struktur &amp; arah visual</h3><p>Sitemap, wireframe, dan moodboard. Kamu tahu apa yang akan dibangun sebelum coding dimulai.</p></div>
+              <span class="step-time">H+3–5</span>
+            </li>
+            <li class="process-step">
+              <span class="step-no">03</span>
+              <div class="step-body"><span class="step-phase">BUILD</span><h3>Desain &amp; development</h3><p>Desain dan kode berjalan paralel dengan preview yang bisa kamu klik dan komentari.</p></div>
+              <span class="step-time">MINGGU 1–3</span>
+            </li>
+            <li class="process-step">
+              <span class="step-no">04</span>
+              <div class="step-body"><span class="step-phase">LAUNCH</span><h3>QA &amp; handover</h3><p>Performa, SEO dasar, aksesibilitas, dan dokumentasi. Tidak ada launch tanpa checklist.</p></div>
+              <span class="step-time">MINGGU 3–4</span>
+            </li>
+            <li class="process-step">
+              <span class="step-no">05</span>
+              <div class="step-body"><span class="step-phase">AFTER</span><h3>Maintenance</h3><p>Monitoring, update, dan iterasi. Website bukan artefak museum.</p></div>
+              <span class="step-time">ONGOING</span>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="wrap">
+        <div class="contact-panel">
+          <div class="section-head reveal">
+            <span class="section-index">05</span>
+            <span class="section-label">CONTACT</span>
+            <span class="section-line"></span>
+            <span class="section-meta">CHANNEL OPEN</span>
+          </div>
+
+          <div class="contact-grid">
+            <div class="contact-main">
+              <h2 class="contact-title reveal">PUNYA IDE?<br><em>KIRIM SINYAL.</em></h2>
+              <p class="contact-copy reveal">Ceritakan proyekmu. Kami balas dalam 1×24 jam kerja dengan pertanyaan yang relevan—bukan template penawaran.</p>
+              <div class="contact-actions reveal">
+                <a class="btn btn--primary magnetic" href="mailto:hello@nightshift.studio"><span>Kirim brief</span><i>↗</i></a>
+                <button class="btn btn--ghost" id="copy-email" type="button" data-email="hello@nightshift.studio"><span>Copy email</span><i>⧉</i></button>
+              </div>
+              <div class="contact-links reveal">
+                <a href="mailto:hello@nightshift.studio">EMAIL <span>↗</span></a>
+                <a href="https://wa.me/6281234567890" target="_blank" rel="noopener">WHATSAPP <span>↗</span></a>
+                <a href="https://github.com/zhahenza44/otomasi-web" target="_blank" rel="noopener">SOURCE <span>↗</span></a>
+              </div>
+            </div>
+
+            <div class="terminal reveal" aria-label="Status studio">
+              <div class="terminal-bar"><span class="terminal-path">nightshift@studio:~</span><span class="terminal-dots"><i></i><i></i><i></i></span></div>
+              <pre class="terminal-body" id="terminal-body"><span class="t-line"><span class="t-prompt">$</span> nightshift --status</span>
+<span class="t-line"><span class="t-key">status</span>: <span class="t-ok">available</span></span>
+<span class="t-line"><span class="t-key">response</span>: &lt; 24h</span>
+<span class="t-line"><span class="t-key">location</span>: jakarta, id</span>
+<span class="t-line"><span class="t-key">stack</span>: web + automation</span>
+<span class="t-line"><span class="t-prompt">$</span> <span class="t-cursor">_</span></span></pre>
+              <div class="terminal-foot"><span>JKT, ID</span><span id="clock">--:--:--</span></div>
+            </div>
+          </div>
+
+          <p class="demo-note">Demo concept — nama, metrik, email, dan nomor telepon bersifat fiktif.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-marquee" aria-hidden="true">
+      <div><span>NIGHT//SHIFT — WEB &amp; AUTOMATION — </span><span>NIGHT//SHIFT — WEB &amp; AUTOMATION — </span></div>
+    </div>
+    <div class="wrap footer-bottom">
+      <span>© <span data-year>2026</span> NIGHT//SHIFT</span>
+      <span>DEMO CONCEPT / FICTIONAL STUDIO</span>
+      <a href="#top">BACK TO TOP ↑</a>
+    </div>
+  </footer>
+
+  <dialog class="project-dialog" id="project-dialog" aria-label="Detail studi kasus">
+    <div class="dialog-shell">
+      <button class="dialog-close" id="dialog-close" type="button" aria-label="Tutup case file">CLOSE ×</button>
+      <div id="dialog-content"></div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
