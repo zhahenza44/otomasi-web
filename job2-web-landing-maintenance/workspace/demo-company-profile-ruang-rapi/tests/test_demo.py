@@ -26,3 +26,46 @@ class AssetMapTest(unittest.TestCase):
             with self.subTest(role=role):
                 self.assertIn(role, doc)
                 self.assertIn(url, doc)
+
+
+class HtmlStructureTest(unittest.TestCase):
+    def test_hero_image_is_prioritized(self):
+        self.assertIn(IMAGE_URLS["hero"], HTML)
+        hero_img = next(line for line in HTML.splitlines() if IMAGE_URLS["hero"] in line)
+        self.assertIn('fetchpriority="high"', hero_img)
+        self.assertNotIn('loading="lazy"', hero_img)
+        self.assertIn('width="1200"', hero_img)
+        self.assertIn('height="900"', hero_img)
+
+    def test_six_project_cards_with_lightbox_data(self):
+        self.assertEqual(HTML.count('class="project '), 6)
+        for attr in ("data-project-id", "data-image", "data-title", "data-copy", "data-category"):
+            self.assertEqual(HTML.count(attr), 6)
+
+    def test_lightbox_and_sticky_cta_exist(self):
+        for marker in (
+            'id="project-lightbox"',
+            'role="dialog"',
+            'aria-modal="true"',
+            'id="lightbox-image"',
+            'id="lightbox-title"',
+            'id="lightbox-copy"',
+            'id="lightbox-close"',
+            'id="lightbox-prev"',
+            'id="lightbox-next"',
+            'id="lightbox-wa"',
+            'id="sticky-consult"',
+        ):
+            self.assertIn(marker, HTML)
+
+    def test_placeholder_claims_are_removed(self):
+        for phrase in ("12+", "Rina &amp; Adit", "Dewi, Kemang", "Yoga, Bekasi", "Contoh testimoni"):
+            self.assertNotIn(phrase, HTML)
+        self.assertIn("Contoh portofolio, foto ilustrasi", HTML)
+        self.assertIn("Foto ilustrasi: Pexels", HTML)
+
+    def test_form_has_exactly_five_fields(self):
+        for name in ("nama", "wa", "layanan", "budget", "pesan"):
+            self.assertIn(f'name="{name}"', HTML)
+        self.assertNotIn('name="area"', HTML)
+        self.assertEqual(HTML.count("<label"), 5)
