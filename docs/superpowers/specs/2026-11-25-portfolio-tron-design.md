@@ -55,7 +55,9 @@ Design Read: one-page personal CV for prospective clients, in TRON system style,
 - Two service cards: the two real job lines carry equal weight, so no third filler card was added.
 - Uniform project cards: each card is one demo of equal weight, with index and track label carrying the hierarchy.
 - Arrows on external demo links only: they signal a jump out of the CV, not decoration on every button.
-- Hover and transition motion only: MOTION 1, no loops, and reduced motion removes the transitions.
+- Hover, pressed, and transition states only: MOTION 1, no loops, and reduced motion removes the transitions.
+- Low-alpha radial wash on the page background only: gives the near-black field some depth without putting glow on every component.
+- Interactive boundaries at 3.25:1: the stronger cyan border is used on controls, while the fainter line stays on non-interactive cards and separators.
 - Single column below 900px: the grids reflow where two columns stop holding, and every control stays at least 44px.
 
 ## Left to builder
