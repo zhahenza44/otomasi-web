@@ -58,6 +58,7 @@ Design Read: one-page personal CV for prospective clients, in TRON system style,
 - Hover, pressed, and transition states only: MOTION 1, no loops, and reduced motion removes the transitions.
 - Low-alpha radial wash on the page background only: gives the near-black field some depth without putting glow on every component.
 - Interactive boundaries at 3.25:1: the stronger cyan border is used on controls, while the fainter line stays on non-interactive cards and separators.
+- Shadow only on the primary button and on hovered cards: marks the one action and a temporary lift, not a default surface.
 - Single column below 900px: the grids reflow where two columns stop holding, and every control stays at least 44px.
 
 ## Left to builder
