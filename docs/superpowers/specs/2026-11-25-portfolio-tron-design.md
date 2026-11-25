@@ -1,4 +1,4 @@
-# Design — Portfolio TRON Alan Nawa
+# Design: Portfolio TRON Alan Nawa
 
 ## Intent
 
@@ -27,9 +27,9 @@ Satu halaman CV digital untuk Alan Nawa. Harus melakukan dua hal sekaligus: menu
 
 ## Approaches
 
-1. **Satu halaman statis di `/home/asnodt/Projects/Portofolio/`** — dipilih. Konsisten dengan demo yang ada, bisa langsung dibuka dan di-host tanpa build.
-2. **Starter Astro/Next dari folder `resources/`** — ditolak. Perlu build step dan dependency untuk hasil yang masih satu halaman.
-3. **Tema GitHub Pages/Jekyll** — ditolak. Menambah konfigurasi tanpa manfaat untuk CV statis.
+1. **Satu halaman statis di `/home/asnodt/Projects/Portofolio/`**: dipilih. Konsisten dengan demo yang ada, bisa langsung dibuka dan di-host tanpa build.
+2. **Starter Astro/Next dari folder `resources/`**: ditolak. Perlu build step dan dependency untuk hasil yang masih satu halaman.
+3. **Tema GitHub Pages/Jekyll**: ditolak. Menambah konfigurasi tanpa manfaat untuk CV statis.
 
 ## Decisions
 
@@ -43,6 +43,20 @@ Satu halaman CV digital untuk Alan Nawa. Harus melakukan dua hal sekaligus: menu
 ## Reasoning on approach
 
 - `js/data.js` tidak dipakai: kartu statis lebih awet untuk CV dan menghindari duplikasi kontak di dua tempat.
+
+## Visual decision record
+
+Design Read: one-page personal CV for prospective clients, in TRON system style, dial ENERGY 2 / RHYTHM 2 / MOTION 1.
+
+- Near-black with cyan and a small orange accent: TRON identity from the brief, cyan for system labels and orange only for the secondary marker.
+- Grid and static scanline: the identity motif from the brief, kept behind the content with no movement loop.
+- Mono labels with wide tracking: technical voice from the brief, limited to labels and short data lines so body copy stays readable.
+- Hero panel instead of a portrait: gives the opening screen one focal point without inventing a photo or asset.
+- Two service cards: the two real job lines carry equal weight, so no third filler card was added.
+- Uniform project cards: each card is one demo of equal weight, with index and track label carrying the hierarchy.
+- Arrows on external demo links only: they signal a jump out of the CV, not decoration on every button.
+- Hover and transition motion only: MOTION 1, no loops, and reduced motion removes the transitions.
+- Single column below 900px: the grids reflow where two columns stop holding, and every control stays at least 44px.
 
 ## Left to builder
 
