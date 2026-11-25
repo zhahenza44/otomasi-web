@@ -22,20 +22,20 @@ Otomasi-Web/
 
 ## Demo portofolio Job 1
 
-| Demo | Fokus demo | Lokasi |
-|---|---|---|
-| `demo-ai-lead-capture` | Workflow n8n lead capture → normalisasi → Google Sheets → klasifikasi AI → notifikasi Slack/email → follow-up H+1. Dilengkapi dokumentasi arsitektur, panduan setup, contoh payload, dan mock dashboard interaktif. | `job1-otomasi-ai-workflow/workspace/demo-ai-lead-capture/` |
+| Demo | Fokus demo |
+|---|---|
+| `demo-ai-lead-capture` | Workflow n8n lead capture → normalisasi → Google Sheets → klasifikasi AI → notifikasi Slack/email → follow-up H+1. Dilengkapi dokumentasi arsitektur, panduan setup, contoh payload, dan mock dashboard interaktif. |
 
 Workflow siap di-import ke n8n ada di `job1-otomasi-ai-workflow/workspace/demo-ai-lead-capture/workflow/lead-capture-ai-followup.json`. Dashboard demo bisa dibuka lewat `job1-otomasi-ai-workflow/workspace/demo-ai-lead-capture/dashboard/index.html`.
 
 ## Demo portofolio Job 2
 
-| Demo | Niche | Fokus demo | Lokasi |
-|---|---|---|---|
-| `demo-landingpage-servis-ac` | Jasa servis AC | Landing page lead WhatsApp, daftar layanan, estimasi harga, FAQ | `job2-web-landing-maintenance/workspace/demo-landingpage-servis-ac/` |
-| `demo-company-profile-ruang-rapi` | Desain interior & renovasi | Company profile, filter portofolio, before/after slider, form konsultasi WhatsApp | `job2-web-landing-maintenance/workspace/demo-company-profile-ruang-rapi/` |
-| `demo-landingpage-kedai-kopi` | Kedai kopi | Landing page kedai kopi, menu, profil, suasana tenang, pesan WhatsApp | `job2-web-landing-maintenance/workspace/demo-landingpage-kedai-kopi/` |
-| `demo-rental-mobil-multipage` | Rental mobil | Website multi-halaman: katalog dengan filter & search, detail unit, booking dengan kalkulasi harga, FAQ, dan kontak | `job2-web-landing-maintenance/workspace/demo-rental-mobil-multipage/` |
+| Demo | Niche | Fokus demo |
+|---|---|---|
+| `demo-landingpage-servis-ac` | Jasa servis AC | Landing page lead WhatsApp, daftar layanan, estimasi harga, FAQ |
+| `demo-company-profile-ruang-rapi` | Desain interior & renovasi | Company profile, filter portofolio, before/after slider, form konsultasi WhatsApp |
+| `demo-landingpage-kedai-kopi` | Kedai kopi | Landing page kedai kopi, menu, profil, suasana tenang, pesan WhatsApp |
+| `demo-rental-mobil-multipage` | Rental mobil | Website multi-halaman: katalog dengan filter & search, detail unit, booking dengan kalkulasi harga, FAQ, dan kontak |
 
-Demo Job 2 berupa HTML/CSS/JS statis tanpa dependency. Buka `index.html` langsung di browser, atau jalankan local server dari folder masing-masing. Detail kustomisasi ada di `README.md` tiap demo.
+Demo Job 2 berupa HTML/CSS/JS statis tanpa dependency. Detail kustomisasi ada di `README.md` tiap demo.
 

@@ -3,9 +3,6 @@
 Demo landing page statis untuk portofolio **Job 2: Web Development/Landing Page + Maintenance**.  
 Konsep: jasa servis AC panggilan lokal, fokus ke lead/booking via WhatsApp.
 
-## Lokasi
-`Projects/Freelance-Otomasi-Web/job2-web-landing-maintenance/workspace/demo-landingpage-servis-ac/`
-
 ## Struktur file
 ```text
 demo-landingpage-servis-ac/

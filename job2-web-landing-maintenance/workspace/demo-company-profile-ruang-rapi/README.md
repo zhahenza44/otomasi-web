@@ -5,9 +5,6 @@ Konsep: studio desain interior & renovasi rumahan, fokus ke lead konsultasi via 
 
 Arah desain dan alasan keputusan ada di [`DESIGN.md`](DESIGN.md).
 
-## Lokasi
-`Projects/Freelance-Otomasi-Web/job2-web-landing-maintenance/workspace/demo-company-profile-ruang-rapi/`
-
 ## Struktur file
 ```text
 demo-company-profile-ruang-rapi/
@@ -39,27 +36,6 @@ demo-company-profile-ruang-rapi/
 - Meta description, Open Graph dasar, favicon, dan struktur heading yang rapi.
 - Tanpa dependency/build step.
 
-## Menjalankan
-```bash
-cd demo-company-profile-ruang-rapi
-python3 -m http.server 8766
-```
-Buka `http://127.0.0.1:8766`.
-
-## Tes
-```bash
-python3 -m unittest discover -s tests -v
-```
-Tes statis memeriksa struktur HTML, kontrak CSS, kontrak JavaScript, dan asset map. Tidak memerlukan browser.
-
-Untuk cek perilaku nyata di Firefox headless lewat WebDriver BiDi:
-```bash
-firefox --headless --new-instance --profile /tmp/rr-ff-profile --remote-debugging-port 9222 about:blank &
-python3 tests/browser_check.py
-VIEWPORT=195x422 python3 tests/browser_check.py
-```
-Skrip kedua menyimulasikan viewport 390px pada zoom 200%. Keduanya memeriksa lightbox terfilter, fokus keyboard, `inert`, sticky CTA, pesan WhatsApp, dan overflow horizontal.
-
 ## Yang bisa dikustomisasi cepat
 Di `index.html`:
 - **Brand/nama usaha:** "Ruang Rapi", inisial "R", tagline.
@@ -86,10 +62,3 @@ Di `css/styles.css`:
   - analytics ringan (Plausible/GA4) dan WhatsApp click tracking,
   - mengganti foto ilustrasi dengan dokumentasi proyek asli,
   - optimasi gambar (WebP/AVIF).
-
-## Sudah diuji
-- 24 assertion statis lewat `python3 -m unittest discover -s tests -v`.
-- 14 pemeriksaan perilaku per viewport lewat `python3 tests/browser_check.py`, lulus di 390px dan 195px (simulasi zoom 200%).
-- Sembilan URL foto Pexels merespons HTTP 200.
-- Kontras teks: `#ffffff` di `#b4552d` = 4,91:1; `#6f665b` di `#faf6ef` = 5,23:1; `#6f665b` di `#f3ece1` = 4,80:1. Semua lolos AA untuk teks normal.
-- Lightbox terfilter, fokus keyboard, `inert`, sticky CTA, dan pesan WhatsApp diverifikasi di browser, bukan hanya lewat pencarian teks.

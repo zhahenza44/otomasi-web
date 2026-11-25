@@ -3,9 +3,6 @@
 Demo landing page statis untuk portofolio **Job 2: Web Development/Landing Page + Maintenance**.  
 Konsep: kedai kopi dengan kopi tubruk, kopi manis, teh susu dan suasana tenang; pesanan tetap menggunakan WhatsApp.
 
-## Lokasi
-`Projects/Freelance-Otomasi-Web/job2-web-landing-maintenance/workspace/demo-landingpage-kedai-kopi/`
-
 ## Struktur file
 ```text
 demo-landingpage-kedai-kopi/
