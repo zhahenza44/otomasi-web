@@ -69,3 +69,30 @@ class HtmlStructureTest(unittest.TestCase):
             self.assertIn(f'name="{name}"', HTML)
         self.assertNotIn('name="area"', HTML)
         self.assertEqual(HTML.count("<label"), 5)
+
+
+class CssContractTest(unittest.TestCase):
+    def test_new_components_are_styled(self):
+        for marker in (
+            ".project.is-featured",
+            ".project-media img",
+            ".lightbox[hidden]",
+            ".lightbox-panel",
+            ".lightbox-close",
+            ".lightbox-nav",
+            ".sticky-cta",
+        ):
+            self.assertIn(marker, CSS)
+
+    def test_hover_and_focus_zoom_guard(self):
+        self.assertIn(".project:hover .project-media img", CSS)
+        self.assertIn(".project:focus-within .project-media img", CSS)
+        self.assertIn("scale(1.03)", CSS)
+
+    def test_mobile_states_are_defined(self):
+        for marker in ("@media (max-width: 1024px)", "@media (max-width: 720px)", "@media (max-width: 420px)"):
+            self.assertIn(marker, CSS)
+
+    def test_reduced_motion_guard(self):
+        self.assertIn("@media (prefers-reduced-motion: reduce)", CSS)
+        self.assertNotIn("animation: pulse", CSS)
