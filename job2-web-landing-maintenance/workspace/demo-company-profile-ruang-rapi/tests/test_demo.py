@@ -1,3 +1,4 @@
+import re
 import unittest
 from pathlib import Path
 
@@ -129,3 +130,54 @@ class CleanupTest(unittest.TestCase):
         for source in (HTML, CSS, JS):
             self.assertNotIn("assets/after.svg", source)
             self.assertNotIn("assets/before.svg", source)
+
+
+class ReviewFixTest(unittest.TestCase):
+    def test_lightbox_navigation_follows_visible_projects(self):
+        self.assertIn("projects.filter((project) => !project.hidden)", JS)
+        self.assertIn("visibleProjects.indexOf(projects[activeProjectIndex])", JS)
+
+    def test_lightbox_focus_is_set_only_on_initial_open(self):
+        self.assertIn("if (isInitialOpen) lightboxClose.focus();", JS)
+        self.assertEqual(JS.count("lightboxClose.focus()"), 1)
+
+    def test_sticky_observer_hides_on_any_intersection(self):
+        self.assertIn("{ threshold: 0 }", JS)
+        self.assertNotIn("threshold: 0.15", JS)
+
+    def test_project_cards_expose_button_semantics(self):
+        cards = re.findall(r"<article class=\"project[^\"]*\"[^>]*>", HTML)
+        self.assertEqual(len(cards), 6)
+        for card in cards:
+            title = re.search(r'data-title="([^"]+)"', card).group(1)
+            with self.subTest(title=title):
+                self.assertIn('role="button"', card)
+                self.assertIn(f'aria-label="Buka contoh proyek: {title}"', card)
+
+    def test_hidden_sticky_cta_leaves_tab_order(self):
+        rule = re.search(r"\.sticky-cta\.is-hidden\s*\{([^}]*)\}", CSS)
+        self.assertIsNotNone(rule)
+        self.assertIn("visibility: hidden", rule.group(1))
+
+    def test_sticky_body_padding_is_toggled(self):
+        self.assertIn("document.body.classList.add('has-sticky-cta')", JS)
+        self.assertIn("document.body.classList.toggle('has-sticky-cta', !isConsultVisible)", JS)
+        self.assertIn("body.has-sticky-cta { padding-bottom: 5.5rem; }", CSS)
+        self.assertNotIn("  body { padding-bottom: 5.5rem; }", CSS)
+
+    def test_dialog_marks_background_landmarks_inert(self):
+        self.assertIn("document.querySelectorAll('header, main, footer')", JS)
+        self.assertIn("setAttribute('inert', '')", JS)
+        self.assertIn("removeAttribute('inert')", JS)
+
+    def test_readme_title_has_no_em_dash(self):
+        self.assertNotIn("—", (ROOT / "README.md").read_text(encoding="utf-8"))
+
+    def test_design_status_reflects_delivery(self):
+        doc = (ROOT / "DESIGN.md").read_text(encoding="utf-8")
+        self.assertNotIn("Menunggu persetujuan", doc)
+        self.assertIn("Sudah dieksekusi", doc)
+
+    def test_narrow_viewport_prevents_grid_overflow(self):
+        self.assertIn(".price-card, .contact-info, .contact-form { min-width: 0; padding: 1.25rem; }", CSS)
+        self.assertIn("overflow-wrap: anywhere", CSS)

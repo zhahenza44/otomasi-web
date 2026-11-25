@@ -83,17 +83,21 @@ const lightboxPrev = document.querySelector('#lightbox-prev');
 const lightboxNext = document.querySelector('#lightbox-next');
 const lightboxWa = document.querySelector('#lightbox-wa');
 let activeProjectIndex = -1;
+let visibleProjects = [];
 let lastFocusedElement = null;
+const backgroundLandmarks = document.querySelectorAll('header, main, footer');
 
 function openProject(index) {
-  if (!lightbox || !projects[index]) return;
+  const project = projects[index];
+  if (!lightbox || !project || project.hidden) return;
 
-  if (activeProjectIndex === -1) {
+  const isInitialOpen = activeProjectIndex === -1;
+  if (isInitialOpen) {
     lastFocusedElement = document.activeElement;
   }
 
+  visibleProjects = projects.filter((project) => !project.hidden);
   activeProjectIndex = index;
-  const project = projects[index];
   const title = project.dataset.title || '';
   lightboxImage.src = project.dataset.image || '';
   lightboxImage.alt = `Ilustrasi contoh proyek: ${title}`;
@@ -103,7 +107,8 @@ function openProject(index) {
 
   lightbox.hidden = false;
   document.body.style.overflow = 'hidden';
-  lightboxClose.focus();
+  backgroundLandmarks.forEach((landmark) => landmark.setAttribute('inert', ''));
+  if (isInitialOpen) lightboxClose.focus();
 }
 
 function closeProject() {
@@ -112,6 +117,7 @@ function closeProject() {
   lightbox.hidden = true;
   document.body.style.overflow = '';
   activeProjectIndex = -1;
+  backgroundLandmarks.forEach((landmark) => landmark.removeAttribute('inert'));
 
   if (lastFocusedElement && lastFocusedElement.isConnected) {
     lastFocusedElement.focus();
@@ -120,9 +126,10 @@ function closeProject() {
 }
 
 function moveProject(direction) {
-  if (projects.length === 0) return;
-  const nextIndex = (activeProjectIndex + direction + projects.length) % projects.length;
-  openProject(nextIndex);
+  if (visibleProjects.length === 0 || activeProjectIndex === -1) return;
+  const currentVisibleIndex = visibleProjects.indexOf(projects[activeProjectIndex]);
+  const nextVisibleIndex = (currentVisibleIndex + direction + visibleProjects.length) % visibleProjects.length;
+  openProject(projects.indexOf(visibleProjects[nextVisibleIndex]));
 }
 
 projects.forEach((project, index) => {
@@ -290,18 +297,23 @@ const stickyConsult = document.querySelector('#sticky-consult');
 const consultSection = document.querySelector('#konsultasi');
 
 if (stickyConsult) {
+  document.body.classList.add('has-sticky-cta');
+
   if ('IntersectionObserver' in window && consultSection) {
     const stickyObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          stickyConsult.classList.toggle('is-hidden', entry.isIntersecting);
+          const isConsultVisible = entry.isIntersecting;
+          stickyConsult.classList.toggle('is-hidden', isConsultVisible);
+          document.body.classList.toggle('has-sticky-cta', !isConsultVisible);
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0 }
     );
     stickyObserver.observe(consultSection);
   } else {
     stickyConsult.classList.add('is-hidden');
+    document.body.classList.remove('has-sticky-cta');
   }
 }
 

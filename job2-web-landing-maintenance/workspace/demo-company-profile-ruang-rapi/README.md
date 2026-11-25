@@ -1,4 +1,4 @@
-# Demo Company Profile — Ruang Rapi (Desain Interior & Renovasi)
+# Demo Company Profile: Ruang Rapi (Desain Interior & Renovasi)
 
 Demo landing page/company profile statis untuk portofolio **Job 2: Web Development/Landing Page + Maintenance**.
 Konsep: studio desain interior & renovasi rumahan, fokus ke lead konsultasi via WhatsApp.
@@ -19,7 +19,8 @@ demo-company-profile-ruang-rapi/
 ├── assets/
 │   └── favicon.svg
 ├── tests/
-│   └── test_demo.py    # Assertion statis untuk struktur dan kontrak UI
+│   ├── test_demo.py        # Assertion statis untuk struktur dan kontrak UI
+│   └── browser_check.py    # Pemeriksaan perilaku nyata via Firefox BiDi
 ├── docs/superpowers/plans/
 │   └── 2026-11-25-ruang-rapi-polish.md
 ├── DESIGN.md
@@ -49,7 +50,15 @@ Buka `http://127.0.0.1:8766`.
 ```bash
 python3 -m unittest discover -s tests -v
 ```
-Tes memeriksa struktur HTML, kontrak CSS, kontrak JavaScript, dan asset map. Tidak memerlukan browser.
+Tes statis memeriksa struktur HTML, kontrak CSS, kontrak JavaScript, dan asset map. Tidak memerlukan browser.
+
+Untuk cek perilaku nyata di Firefox headless lewat WebDriver BiDi:
+```bash
+firefox --headless --new-instance --profile /tmp/rr-ff-profile --remote-debugging-port 9222 about:blank &
+python3 tests/browser_check.py
+VIEWPORT=195x422 python3 tests/browser_check.py
+```
+Skrip kedua menyimulasikan viewport 390px pada zoom 200%. Keduanya memeriksa lightbox terfilter, fokus keyboard, `inert`, sticky CTA, pesan WhatsApp, dan overflow horizontal.
 
 ## Yang bisa dikustomisasi cepat
 Di `index.html`:
@@ -79,7 +88,8 @@ Di `css/styles.css`:
   - optimasi gambar (WebP/AVIF).
 
 ## Sudah diuji
-- 14 assertion statis lewat `python3 -m unittest discover -s tests -v`.
+- 24 assertion statis lewat `python3 -m unittest discover -s tests -v`.
+- 14 pemeriksaan perilaku per viewport lewat `python3 tests/browser_check.py`, lulus di 390px dan 195px (simulasi zoom 200%).
 - Sembilan URL foto Pexels merespons HTTP 200.
 - Kontras teks: `#ffffff` di `#b4552d` = 4,91:1; `#6f665b` di `#faf6ef` = 5,23:1; `#6f665b` di `#f3ece1` = 4,80:1. Semua lolos AA untuk teks normal.
-- Tautan anchor, filter portofolio, slider, dan alur form ke WhatsApp diperiksa lewat struktur dan kontrak JS.
+- Lightbox terfilter, fokus keyboard, `inert`, sticky CTA, dan pesan WhatsApp diverifikasi di browser, bukan hanya lewat pencarian teks.

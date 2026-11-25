@@ -855,7 +855,7 @@ summary:focus-visible,
   .contact-info, .contact-form { padding: 1.75rem; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; }
-  body { padding-bottom: 5.5rem; }
+  body.has-sticky-cta { padding-bottom: 5.5rem; }
   .wa-float { display: none; }
   .sticky-cta {
     position: fixed;
@@ -877,7 +877,7 @@ summary:focus-visible,
   }
   .sticky-cta svg { width: 20px; height: 20px; }
   .sticky-cta:active { transform: scale(0.97); }
-  .sticky-cta.is-hidden { opacity: 0; transform: translateY(140%); pointer-events: none; }
+  .sticky-cta.is-hidden { visibility: hidden; opacity: 0; transform: translateY(140%); pointer-events: none; }
   .lightbox-panel { max-height: 84vh; }
   .lightbox-body { padding: 1.25rem; }
 }
@@ -886,6 +886,8 @@ summary:focus-visible,
   .hero-actions .btn { width: 100%; }
   .project.is-featured .project-body { padding: 1.4rem 1.5rem 1.5rem; }
   .project.is-featured .project-body h3 { font-size: 1.3rem; }
+  .price-card, .contact-info, .contact-form { min-width: 0; padding: 1.25rem; }
+  .price-card li, .contact-list strong, .contact-list span { overflow-wrap: anywhere; }
   .lightbox-body .btn { width: 100%; }
 }
 
