@@ -15,9 +15,6 @@ demo-company-profile-ruang-rapi/
 │   └── main.js         # Menu, filter, lightbox, slider, sticky CTA, form WA
 ├── assets/
 │   └── favicon.svg
-├── tests/
-│   ├── test_demo.py        # Assertion statis untuk struktur dan kontrak UI
-│   └── browser_check.py    # Pemeriksaan perilaku nyata via Firefox BiDi
 ├── docs/superpowers/plans/
 │   └── 2026-11-25-ruang-rapi-polish.md
 ├── DESIGN.md
