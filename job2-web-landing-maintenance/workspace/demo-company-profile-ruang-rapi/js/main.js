@@ -66,13 +66,107 @@ function setFilter(filter) {
   });
 
   if (filterCount) {
-    filterCount.textContent = `${shown} proyek`;
+    filterCount.textContent = `${shown} contoh`;
   }
 }
 
 filterButtons.forEach((button) => {
   button.addEventListener('click', () => setFilter(button.dataset.filter || 'all'));
 });
+
+const lightbox = document.querySelector('#project-lightbox');
+const lightboxImage = document.querySelector('#lightbox-image');
+const lightboxTitle = document.querySelector('#lightbox-title');
+const lightboxCopy = document.querySelector('#lightbox-copy');
+const lightboxClose = document.querySelector('#lightbox-close');
+const lightboxPrev = document.querySelector('#lightbox-prev');
+const lightboxNext = document.querySelector('#lightbox-next');
+const lightboxWa = document.querySelector('#lightbox-wa');
+let activeProjectIndex = -1;
+let lastFocusedElement = null;
+
+function openProject(index) {
+  if (!lightbox || !projects[index]) return;
+
+  if (activeProjectIndex === -1) {
+    lastFocusedElement = document.activeElement;
+  }
+
+  activeProjectIndex = index;
+  const project = projects[index];
+  const title = project.dataset.title || '';
+  lightboxImage.src = project.dataset.image || '';
+  lightboxImage.alt = `Ilustrasi contoh proyek: ${title}`;
+  lightboxTitle.textContent = title;
+  lightboxCopy.textContent = project.dataset.copy || '';
+  lightboxWa.href = `https://wa.me/6281234567890?text=${encodeURIComponent(`Halo Ruang Rapi, saya tertarik dengan contoh ${title}. Bisa dibantu?`)}`;
+
+  lightbox.hidden = false;
+  document.body.style.overflow = 'hidden';
+  lightboxClose.focus();
+}
+
+function closeProject() {
+  if (!lightbox || lightbox.hidden) return;
+
+  lightbox.hidden = true;
+  document.body.style.overflow = '';
+  activeProjectIndex = -1;
+
+  if (lastFocusedElement && lastFocusedElement.isConnected) {
+    lastFocusedElement.focus();
+  }
+  lastFocusedElement = null;
+}
+
+function moveProject(direction) {
+  if (projects.length === 0) return;
+  const nextIndex = (activeProjectIndex + direction + projects.length) % projects.length;
+  openProject(nextIndex);
+}
+
+projects.forEach((project, index) => {
+  project.addEventListener('click', () => openProject(index));
+  project.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      openProject(index);
+    }
+  });
+});
+
+if (lightbox) {
+  lightboxClose.addEventListener('click', closeProject);
+  lightboxPrev.addEventListener('click', () => moveProject(-1));
+  lightboxNext.addEventListener('click', () => moveProject(1));
+
+  lightbox.querySelector('[data-close-lightbox]').addEventListener('click', closeProject);
+
+  lightbox.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeProject();
+    } else if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      moveProject(-1);
+    } else if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      moveProject(1);
+    } else if (event.key === 'Tab') {
+      const focusable = Array.from(lightbox.querySelectorAll('button, a[href]'));
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+  });
+}
 
 // Before / after slider
 const slider = document.querySelector('#ba-slider');
@@ -163,7 +257,6 @@ if (consultForm) {
       `Nama: ${get('nama')}`,
       `WhatsApp: ${get('wa')}`,
       `Kebutuhan: ${get('layanan')}`,
-      `Area: ${get('area')}`,
       `Budget: ${get('budget') || 'Belum ditentukan'}`,
       '',
       `Catatan: ${get('pesan') || '-'}`,
@@ -191,6 +284,25 @@ if (consultForm) {
       }
     }
   });
+}
+
+const stickyConsult = document.querySelector('#sticky-consult');
+const consultSection = document.querySelector('#konsultasi');
+
+if (stickyConsult) {
+  if ('IntersectionObserver' in window && consultSection) {
+    const stickyObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          stickyConsult.classList.toggle('is-hidden', entry.isIntersecting);
+        });
+      },
+      { threshold: 0.15 }
+    );
+    stickyObserver.observe(consultSection);
+  } else {
+    stickyConsult.classList.add('is-hidden');
+  }
 }
 
 // Reveal sections on scroll

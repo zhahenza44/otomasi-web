@@ -96,3 +96,29 @@ class CssContractTest(unittest.TestCase):
     def test_reduced_motion_guard(self):
         self.assertIn("@media (prefers-reduced-motion: reduce)", CSS)
         self.assertNotIn("animation: pulse", CSS)
+
+
+class JsContractTest(unittest.TestCase):
+    def test_lightbox_keyboard_and_focus_contract(self):
+        for marker in (
+            "function openProject(index)",
+            "function closeProject()",
+            "function moveProject(direction)",
+            "activeProjectIndex",
+            "lastFocusedElement",
+            "event.key === 'Escape'",
+            "event.key === 'ArrowLeft'",
+            "event.key === 'ArrowRight'",
+            "lightboxClose.focus()",
+        ):
+            self.assertIn(marker, JS)
+
+    def test_wa_popup_fallback_preserved(self):
+        self.assertIn("window.open(url, '_blank')", JS)
+        self.assertIn("Buka WhatsApp manual", JS)
+        self.assertIn('name="pesan"', HTML)
+
+    def test_sticky_cta_observer(self):
+        self.assertIn("IntersectionObserver", JS)
+        self.assertIn("sticky-consult", JS)
+        self.assertIn("is-hidden", JS)
