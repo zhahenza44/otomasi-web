@@ -122,3 +122,10 @@ class JsContractTest(unittest.TestCase):
         self.assertIn("IntersectionObserver", JS)
         self.assertIn("sticky-consult", JS)
         self.assertIn("is-hidden", JS)
+
+
+class CleanupTest(unittest.TestCase):
+    def test_no_old_svg_references(self):
+        for source in (HTML, CSS, JS):
+            self.assertNotIn("assets/after.svg", source)
+            self.assertNotIn("assets/before.svg", source)
